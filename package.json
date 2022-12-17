@@ -1,0 +1,38 @@
+{
+  "name": "KiddeeLab IDE",
+  "version": "1.0.0",
+  "description": "An Block Programing IDE for Microcontrollers.",
+  "main": "main.js",
+  "author": "Kiddee Lab",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "start": "npm run electron:dev",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "electron:dev": "concurrently \"cross-env BROWSER=none npm run dev\" \"wait-on tcp:5173 && electron .\""
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.1",
+    "blockly": "^9.2.0",
+    "concurrently": "^7.6.0",
+    "cross-env": "^7.0.3",
+    "flowbite": "^1.5.5",
+    "flowbite-react": "^0.3.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "wait-on": "^7.0.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.9",
+    "@vitejs/plugin-react": "^3.0.0",
+    "autoprefixer": "^10.4.13",
+    "electron": "^22.0.0",
+    "postcss": "^8.4.20",
+    "tailwindcss": "^3.2.4",
+    "typescript": "^4.9.3",
+    "vite": "^4.0.0"
+  }
+}
