@@ -17,7 +17,7 @@
     "preview": "vite preview",
     "package": "electron-forge package",
     "package:mac64": "electron-forge package --arch=x64 --platform=darwin",
-    "make": "npm run build; electron-forge make;"
+    "make": "electron-forge make"
   },
   "dependencies": {
     "@blockly/block-plus-minus": "^4.0.3",
