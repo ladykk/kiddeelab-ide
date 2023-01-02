@@ -282,20 +282,7 @@ function VerifyButton({ disabled }: { disabled: boolean }) {
   const { workspace, variables, functions, deviceId } =
     useAppSelector(selectProject);
   const dispatch = useAppDispatch();
-  const [isPass, setPass] = useState<boolean>(false);
   const [isVerifying, setVerifying] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (workspace) {
-      const changePass = () => {
-        setPass(false);
-      };
-      workspace.addChangeListener(changePass);
-      return () => {
-        workspace.removeChangeListener(changePass);
-      };
-    }
-  }, []);
 
   useEffect(() => {
     if (workspace) {
@@ -331,7 +318,6 @@ function VerifyButton({ disabled }: { disabled: boolean }) {
             message: result.output,
           })
         );
-        setPass(true);
         setTimeout(() => {
           dispatch(removeToast("buildVerifyResult"));
         }, 10000);
@@ -344,7 +330,6 @@ function VerifyButton({ disabled }: { disabled: boolean }) {
             message: result.error.message,
           })
         );
-        setPass(false);
       }
       dispatch(removeToast("buildVerify"));
 
@@ -353,12 +338,7 @@ function VerifyButton({ disabled }: { disabled: boolean }) {
   };
 
   return (
-    <Button
-      size="sm"
-      disabled={disabled || isVerifying}
-      color={isPass ? "success" : undefined}
-      onClick={onClick}
-    >
+    <Button size="sm" disabled={disabled || isVerifying} onClick={onClick}>
       {isVerifying ? (
         <Spinner size="sm" className="mr-2" />
       ) : (

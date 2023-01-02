@@ -60,7 +60,7 @@ function Code() {
   useEffect(onWorkspaceChange, [variables, functions, showCode]);
 
   return showCode ? (
-    <div className="max-w-[450px] w-full h-full bg-gray-100 flex flex-col z-40 border-l">
+    <div className="max-w-[450px] w-full h-full bg-gray-100 flex flex-col z-10 border-l">
       <p className="bg-gray-50 text-lg font-bold px-4 py-2 text-blue-600 border-t border-b">
         Live Code
       </p>

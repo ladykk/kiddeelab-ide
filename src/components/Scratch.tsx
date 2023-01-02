@@ -6,7 +6,7 @@ function Scratch() {
   return (
     <Fragment>
       <div
-        className={`z-50 fixed right-0 top-[15%] hover:cursor-pointer hover:opacity-80 px-1 h-20 rounded-l-2xl flex items-center justify-center border-2 shadow-lg border-r-0 ${
+        className={`z-20 fixed right-0 top-[15%] hover:cursor-pointer hover:opacity-80 px-1 h-20 rounded-l-2xl flex items-center justify-center border-2 shadow-lg border-r-0 ${
           show
             ? "bg-white border-blue-500 hover:bg-blue-100"
             : "bg-blue-500 border-blue-500"
@@ -19,7 +19,7 @@ function Scratch() {
       </div>
       <iframe
         src="/scratch/index.html"
-        className={`w-screen h-screen top-0 left-0 right-0 bottom-0 z-40 ${
+        className={`w-screen h-screen top-0 left-0 right-0 bottom-0 bg-white z-10 ${
           show ? "fixed" : "hidden"
         }`}
       />

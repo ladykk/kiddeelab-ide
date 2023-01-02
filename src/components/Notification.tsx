@@ -13,7 +13,7 @@ import { Toast as ToastType } from "../types/toast";
 export function NotificationPane() {
   const toasts = useAppSelector(selectToasts);
   return (
-    <div className="fixed top-[66px] right-2 flex flex-col gap-2">
+    <div className="fixed top-[66px] right-2 flex flex-col gap-2 z-30">
       {toasts.map((toast) => (
         <Notification key={toast.id} info={toast} />
       ))}
