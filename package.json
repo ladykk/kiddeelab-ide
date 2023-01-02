@@ -1,6 +1,6 @@
 {
   "name": "KiddeeLab IDE",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "An Block Programing IDE for Microcontrollers.",
   "main": "main.js",
   "author": "Kiddee Lab",
