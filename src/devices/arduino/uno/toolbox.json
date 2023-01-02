@@ -1,0 +1,251 @@
+{
+  "kind": "categoryToolbox",
+  "contents": [
+    {
+      "kind": "category",
+      "name": "UNO",
+      "colour": "#FFBF00",
+      "contents": [
+        { "kind": "block", "type": "arduino_structure" },
+        {
+          "kind": "block",
+          "type": "pin_arduino_uno"
+        }
+      ]
+    },
+    {
+      "kind": "sep"
+    },
+    {
+      "kind": "category",
+      "name": "Pin",
+      "colour": "#4C97FF",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "pin_mode",
+          "inputs": {
+            "pin": { "block": { "type": "pin_arduino_uno" } }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "pin_digital_read",
+          "inputs": { "pin": { "block": { "type": "pin_arduino_uno" } } }
+        },
+        {
+          "kind": "block",
+          "type": "pin_digital_write",
+          "inputs": {
+            "pin": { "block": { "type": "pin_arduino_uno" } },
+            "output": { "block": { "type": "pin_digital_output" } }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "pin_analog_read",
+          "inputs": { "pin": { "block": { "type": "pin_arduino_uno" } } }
+        },
+        {
+          "kind": "block",
+          "type": "pin_analog_write",
+          "inputs": {
+            "pin": { "block": { "type": "pin_arduino_uno" } },
+            "output": { "block": { "type": "pin_analog_output" } }
+          }
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "Serial",
+      "colour": "#CF63CF",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "serial_available"
+        },
+        {
+          "kind": "block",
+          "type": "serial_read_string"
+        },
+        {
+          "kind": "block",
+          "type": "serial_read_string_until"
+        },
+        {
+          "kind": "block",
+          "type": "serial_print",
+          "inputs": {
+            "output": {
+              "block": {
+                "type": "string_data"
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "serial_println",
+          "inputs": {
+            "output": {
+              "block": {
+                "type": "string_data"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "Sensor",
+      "colour": "#5CB1D6",
+      "contents": []
+    },
+    {
+      "kind": "sep"
+    },
+    {
+      "kind": "category",
+      "name": "Control",
+      "colour": "#FFAB19",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "control_wait",
+          "inputs": {
+            "period": {
+              "block": {
+                "type": "number_data"
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "control_wait_until"
+        },
+        {
+          "kind": "block",
+          "type": "control_repeat",
+          "inputs": {
+            "round": {
+              "block": {
+                "type": "number_data"
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "control_if"
+        },
+        {
+          "kind": "block",
+          "type": "control_else_if"
+        },
+        {
+          "kind": "block",
+          "type": "control_else"
+        },
+        {
+          "kind": "block",
+          "type": "control_while"
+        },
+        {
+          "kind": "block",
+          "type": "control_do_while"
+        },
+        {
+          "kind": "block",
+          "type": "control_for"
+        }
+      ]
+    },
+    {
+      "kind": "sep"
+    },
+    {
+      "kind": "category",
+      "name": "Number",
+      "colour": "#59C059",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "number_data"
+        },
+        {
+          "kind": "block",
+          "type": "number_op1"
+        },
+        {
+          "kind": "block",
+          "type": "number_op2"
+        },
+        {
+          "kind": "block",
+          "type": "number_random",
+          "inputs": {
+            "start": {
+              "block": {
+                "type": "number_data",
+                "fields": {
+                  "output": 0
+                }
+              }
+            },
+            "end": {
+              "block": {
+                "type": "number_data",
+                "fields": {
+                  "output": 100
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "Boolean",
+      "colour": "#9966FF",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "boolean_data"
+        },
+        {
+          "kind": "block",
+          "type": "boolean_not"
+        },
+        {
+          "kind": "block",
+          "type": "boolean_op"
+        },
+        { "kind": "block", "type": "boolean_compare" }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "String",
+      "colour": "#FF6680",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "string_data"
+        },
+        { "kind": "block", "type": "string_join" },
+        {
+          "kind": "block",
+          "type": "char_at"
+        },
+        { "kind": "block", "type": "string_length" }
+      ]
+    },
+    {
+      "kind": "sep"
+    }
+  ]
+}
