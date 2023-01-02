@@ -9,11 +9,14 @@ const {
   coreUpdateIndex,
   coreInstallCore,
 } = require("./electron/utils/core");
+const serve = require("electron-serve");
 
-let mainWindow;
+require("update-electron-app")();
 
-const createWindow = () => {
-  mainWindow = new BrowserWindow({
+const loadUrl = serve({ directory: "dist" });
+
+const createWindow = async () => {
+  const mainWindow = new BrowserWindow({
     width: 1280,
     height: 800,
     webPreferences: {
@@ -21,20 +24,6 @@ const createWindow = () => {
       preload: path.join(__dirname, "electron", "preload.js"),
     },
   });
-
-  if (app.isPackaged)
-    mainWindow.loadFile(path.join(__dirname, "dist", "index.html"));
-  else {
-    mainWindow.loadURL("http://localhost:5173/");
-  }
-};
-
-app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") app.quit();
-});
-
-app.whenReady().then(() => {
-  createWindow();
 
   ipcMain.handle("file/open", fileOpen(mainWindow));
   ipcMain.handle("file/save", fileSave(mainWindow));
@@ -49,7 +38,24 @@ app.whenReady().then(() => {
   ipcMain.handle("core/installList", coreInstallList);
   ipcMain.handle("core/installCore", coreInstallCore);
 
-  app.on("activate", () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+  if (app.isPackaged) await loadUrl(mainWindow);
+  else {
+    mainWindow.loadURL("http://localhost:5173/");
+  }
+
+  return mainWindow;
+};
+
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") app.quit();
+});
+
+if (require("electron-squirrel-startup")) app.quit();
+
+app.whenReady().then(async () => {
+  await createWindow();
+
+  app.on("activate", async () => {
+    if (BrowserWindow.getAllWindows().length === 0) await createWindow();
   });
 });
