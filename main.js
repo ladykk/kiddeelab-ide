@@ -19,10 +19,12 @@ const createWindow = async () => {
   const mainWindow = new BrowserWindow({
     width: 1280,
     height: 800,
+    icon: path.join(__dirname, "src", "assets", "icon", "icon.ico"),
     webPreferences: {
       nodeIntegration: true,
       preload: path.join(__dirname, "electron", "preload.js"),
     },
+    autoHideMenuBar: true,
   });
 
   ipcMain.handle("file/open", fileOpen(mainWindow));

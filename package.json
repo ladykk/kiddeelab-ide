@@ -1,5 +1,5 @@
 {
-  "name": "KiddeeLab IDE",
+  "name": "KiddeeLabIDE",
   "version": "0.0.1",
   "description": "An Block Programing IDE for Microcontrollers and Robots.",
   "main": "main.js",

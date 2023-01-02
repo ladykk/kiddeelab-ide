@@ -6,10 +6,8 @@ const ADDITIONAL_URLS = [
   "https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json",
 ];
 
-const ADDITIONAL_URLS_FLAG =
-  ADDITIONAL_URLS.length > 0
-    ? ` --additional-urls ${ADDITIONAL_URLS.join(";")}`
-    : "";
+const ADDITIONAL_URLS_STRING =
+  ADDITIONAL_URLS.length > 0 ? `${ADDITIONAL_URLS.join(" ")}` : "";
 
 module.exports.coreIsInstalled = async (event) => {
   try {
@@ -23,6 +21,16 @@ module.exports.coreIsInstalled = async (event) => {
 
 module.exports.coreUpdateIndex = async (event) => {
   try {
+    const initConfig = await exec(`${CORE} core init`);
+    if (initConfig.stderr) return false;
+
+    if (ADDITIONAL_URLS.length > 0) {
+      const addBoardList = await exec(
+        `${CORE} config set board_manager.additional_urls ${ADDITIONAL_URLS_STRING}`
+      );
+      if (addBoardList.stderr) return false;
+    }
+
     const { stdout, stderr } = await exec(`${CORE} core update-index`);
     if (stderr) return false;
     else return true;
@@ -36,18 +44,16 @@ module.exports.coreInstallList = async (event) => {
     const { stdout, stderr } = await exec(
       `${CORE} core list --format jsonmini`
     );
-    if (stderr) return;
-    else return JSON.parse(stdout).map((core) => core.id);
+    if (stderr) return [];
+    else return JSON.parse(stdout).map((core) => core.id) ?? [];
   } catch (e) {
-    return;
+    return [];
   }
 };
 
 module.exports.coreInstallCore = async (event, platform) => {
   try {
-    const { stdout, stderr } = await exec(
-      `${CORE} core install ${platform}${ADDITIONAL_URLS_FLAG}`
-    );
+    const { stdout, stderr } = await exec(`${CORE} core install ${platform}`);
     if (stderr) return false;
     else return true;
   } catch (e) {
