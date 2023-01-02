@@ -1,11 +1,13 @@
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 const writeFile = util.promisify(require("fs").writeFile);
+const os = require("os");
+const CORE = require("../../core");
 
 const verify = async (fqbn, code) => {
   try {
     // Create Sketch
-    const newSketch = await exec("arduino-cli sketch new KiddeeIDE");
+    const newSketch = await exec(`${CORE} sketch new KiddeeIDE`);
     if (newSketch.stderr)
       return {
         status: "error",
@@ -14,15 +16,22 @@ const verify = async (fqbn, code) => {
       };
 
     // Setup Path
+    let file_path = "";
+    let path_tree;
     const path = newSketch.stdout.slice(19).replace(/[\r\n]/gm, "");
-    const path_tree = path.split("/");
-    const file_path = path + "/" + path_tree[path_tree.length - 1] + ".ino";
+    if (os.type() === "Windows_NT") {
+      path_tree = path.split(`\\`);
+      file_path = path + "\\" + path_tree[path_tree.length - 1] + ".ino";
+    } else {
+      path_tree = path.split("/");
+      file_path = path + "/" + path_tree[path_tree.length - 1] + ".ino";
+    }
 
     // Add Code
     await writeFile(file_path, code);
 
     // Compile
-    const compile = await exec(`arduino-cli compile --fqbn ${fqbn} KiddeeIDE`);
+    const compile = await exec(`${CORE} compile --fqbn ${fqbn} KiddeeIDE`);
     if (compile.stderr)
       return {
         status: "error",
@@ -55,7 +64,7 @@ module.exports.buildUpload = async (event, port, fqbn, code) => {
 
     // Upload
     const { stdout, stderr } = await exec(
-      `arduino-cli upload -p ${port} --fqbn ${fqbn} KiddeeIDE`
+      `${CORE} upload -p ${port} --fqbn ${fqbn} KiddeeIDE`
     );
 
     if (stderr)

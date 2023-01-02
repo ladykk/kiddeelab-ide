@@ -1,6 +1,5 @@
 const path = require("path");
-
-const { app, BrowserWindow, ipcMain, dialog } = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
 const { fileOpen, fileSave } = require("./electron/utils/file");
 const { buildVerify, buildUpload } = require("./electron/utils/build");
 const { deviceFetch } = require("./electron/utils/device");
@@ -54,5 +53,3 @@ app.whenReady().then(() => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
 });
-
-module.exports = mainWindow;
