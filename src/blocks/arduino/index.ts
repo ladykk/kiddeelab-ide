@@ -97,6 +97,15 @@ ArduinoGenerator["pin_attach_interrupt"] = function (block: Block) {
   return code;
 };
 
+ArduinoGenerator["serial_begin"] = function (block: Block) {
+  const output: string = ArduinoGenerator.valueToCode(
+    block,
+    "output",
+    ORDER.ATOMIC
+  );
+  return `Serial.begin(${output});\n`;
+};
+
 ArduinoGenerator["serial_available"] = function (block: Block) {
   return ["Serial.available()", ORDER.ATOMIC];
 };
@@ -131,7 +140,7 @@ ArduinoGenerator["serial_println"] = function (block: Block) {
 ArduinoGenerator["arduino_structure"] = function (block: Block) {
   const setup: string = ArduinoGenerator.statementToCode(block, "setup");
   const loop: string = ArduinoGenerator.statementToCode(block, "loop");
-  return `-> main\nvoid setup() {\n${setup}}\n\nvoid loop() {\n${loop}}\n`;
+  return `-> structure\nvoid setup() {\n${setup}}\n\nvoid loop() {\n${loop}}\n`;
 };
 
 ArduinoGenerator["control_wait"] = function (block: Block) {
@@ -515,11 +524,13 @@ export const codeFormator = (
     }}\n`;
     return format;
   });
-  const arduino = split.find((s) => s.startsWith("main"))?.substring(5) ?? "";
+
+  const structure =
+    split.find((s) => s.startsWith("structure"))?.substring(10) ?? "";
 
   const merge = `${
     declare_variables.join("\n") + (declare_variables.length > 0 ? "\n\n" : "")
-  }${declare_functions.join("\n")}${arduino}`;
+  }${declare_functions.join("\n")}${structure}`;
   return merge;
 };
 

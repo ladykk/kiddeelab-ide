@@ -63,6 +63,20 @@
       "contents": [
         {
           "kind": "block",
+          "type": "serial_begin",
+          "inputs": {
+            "output": {
+              "block": {
+                "type": "number_data",
+                "fields": {
+                  "output": 9600
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
           "type": "serial_available"
         },
         {

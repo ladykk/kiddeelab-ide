@@ -32,3 +32,8 @@ export type DeviceInfo = {
     };
   };
 };
+
+export type SerialData = {
+  timestamp: Date;
+  message: Uint8Array;
+};

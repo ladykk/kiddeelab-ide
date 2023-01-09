@@ -13,20 +13,19 @@ function App() {
 
   return (
     <Fragment>
-      <div className="w-screen h-screen bg-gray-50 flex">
+      <div className="w-screen h-screen max-h-[100vh] max-w-[100vw] bg-gray-50 flex">
         <div className="w-full h-full flex flex-col">
           <MenuBar />
           <div className="w-full h-full flex">
-            <div className="max-w-[450px] w-full border-r">
+            <div className="max-w-[450px] w-full border-r flex flex-col">
               <Device />
               <DeviceManage />
               <CodeManage />
             </div>
             <Workspace />
+            <Code />
           </div>
         </div>
-        <Code />
-        <NotificationPane />
       </div>
       <Scratch />
     </Fragment>

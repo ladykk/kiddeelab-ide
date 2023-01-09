@@ -1,4 +1,5 @@
-import { DevicePort } from "./device";
+import { Event } from "electron";
+import { DevicePort, SerialData } from "./device";
 import { OpenResult, ProjectJson, SaveResult, BuildResult } from "./project";
 
 export {};
@@ -25,6 +26,18 @@ declare global {
       updateIndex: () => Promise<boolean>;
       installList: () => Promise<Array<string>>;
       installCore: (platform: string) => Promise<boolean>;
+    };
+    serial: {
+      isOpen: () => Promise<boolean>;
+      open: (port: string, baudRate: number) => Promise<boolean>;
+      close: () => Promise<boolean>;
+      write: (message: string) => Promise<boolean>;
+      onSerialChange: (
+        callback?: (event: Event, status: boolean) => void
+      ) => void;
+      onSerialData: (
+        callback?: (event: Event, data: SerialData) => void
+      ) => void;
     };
   }
 }

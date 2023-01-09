@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../redux/store";
 import { initWorkspace, selectProject } from "../redux/project";
 import { svgResize } from "blockly";
 import "../styles/blockly.css";
+import { NotificationPane } from "./Notification";
 
 function Workspace() {
   // [Hooks]
@@ -74,6 +75,7 @@ function Workspace() {
       ref={blocklyArea}
       className="bg-gray-100 w-full h-full relative"
     >
+      <NotificationPane />
       {/* Initailizing App */}
       {!workspace && (
         <div className="absolute z-10 top-0 left-0 right-0 bottom-0 flex flex-col items-center justify-center gap-6">

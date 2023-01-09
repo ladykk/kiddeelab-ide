@@ -22,6 +22,7 @@ import { useAppDispatch, useAppSelector } from "../redux/store";
 import { selectProject, setProjectName } from "../redux/project";
 import { handleLoadProject, handleSaveFile, newProject } from "../utils/file";
 import { selectFile } from "../redux/file";
+import { SerialMonitor } from "./Device";
 
 function MenuBar() {
   const { workspace } = useAppSelector(selectProject);
@@ -30,15 +31,18 @@ function MenuBar() {
       className={`w-full h-[56px] bg-blue-500 py-2 px-2 flex gap-2 items-center justify-between`}
     >
       <div className="flex items-center h-full gap-2 flex-1">
-        <Dropdown
-          label={
-            <div className="flex gap-2">
-              <FolderIcon className="w-4" />
-              Files
-            </div>
-          }
-          size="sm"
-        >
+        <div className="mr-2 flex h-full items-center justify-center gap-2">
+          <img
+            src={LOGO}
+            alt="KiddeeLab"
+            className="bg-white p-[1px] w-auto h-full aspect-square rounded"
+          />
+          <p className="text-white font-bold hidden 2xl:block">
+            KiddeeLab | IDE
+          </p>
+        </div>
+
+        <Dropdown label={<div className="flex gap-2">Files</div>} size="sm">
           <NewProjectItem />
           <Dropdown.Divider />
           <OpenProjectItem />
@@ -66,14 +70,7 @@ function MenuBar() {
       </div>
       <ProjectInfo />
       <div className="flex h-full items-center gap-2 mr-2 flex-1 justify-end">
-        <img
-          src={LOGO}
-          alt="KiddeeLab"
-          className="bg-white p-[1px] w-auto h-full aspect-square rounded"
-        />
-        <p className="text-white font-bold text-xl hidden 2xl:block">
-          KiddeeLab | IDE
-        </p>
+        <SerialMonitor />
       </div>
     </div>
   );
@@ -84,7 +81,7 @@ function ProjectInfo() {
   const file = useAppSelector(selectFile);
   const dispatch = useAppDispatch();
   return (
-    <div className="flex items-center gap-2 flex-[2] justify-center">
+    <div className="flex items-center gap-2 flex-1 justify-center">
       {file && (
         <Tooltip content={file} placement="bottom" style="light">
           <DocumentIcon className="text-white w-6 h-6 p-0.5" />

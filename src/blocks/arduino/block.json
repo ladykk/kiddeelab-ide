@@ -190,6 +190,23 @@
     "helpUrl": ""
   },
   {
+    "type": "serial_begin",
+    "message0": "setup serial at buadrate %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "output",
+        "check": ["Number"]
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#CF63CF",
+    "tooltip": "Setup serial with specific baudrate.",
+    "helpUrl": ""
+  },
+  {
     "type": "serial_available",
     "message0": "bytes available in serial",
     "output": "Number",

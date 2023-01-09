@@ -21,3 +21,12 @@ contextBridge.exposeInMainWorld("core", {
   installList: () => ipcRenderer.invoke("core/installList"),
   installCore: (platform) => ipcRenderer.invoke("core/installCore", platform),
 });
+
+contextBridge.exposeInMainWorld("serial", {
+  isOpen: () => ipcRenderer.invoke("serial/isOpen"),
+  open: (port, baudRate) => ipcRenderer.invoke("serial/open", port, baudRate),
+  close: () => ipcRenderer.invoke("serial/close"),
+  write: (message) => ipcRenderer.invoke("serial/write", message),
+  onSerialData: (callback) => ipcRenderer.on("serial/data", callback),
+  onSerialChange: (callback) => ipcRenderer.on("serial/change", callback),
+});

@@ -9,6 +9,12 @@ const {
   coreUpdateIndex,
   coreInstallCore,
 } = require("./electron/utils/core");
+const {
+  serialIsOpen,
+  serialOpen,
+  serialClose,
+  serialWrite,
+} = require("./electron/utils/serial");
 const serve = require("electron-serve");
 
 require("update-electron-app")();
@@ -40,6 +46,11 @@ const createWindow = async () => {
   ipcMain.handle("core/installList", coreInstallList);
   ipcMain.handle("core/installCore", coreInstallCore);
 
+  ipcMain.handle("serial/isOpen", serialIsOpen);
+  ipcMain.handle("serial/open", serialOpen(mainWindow));
+  ipcMain.handle("serial/close", serialClose);
+  ipcMain.handle("serial/write", serialWrite);
+
   if (app.isPackaged) await loadUrl(mainWindow);
   else {
     mainWindow.loadURL("http://localhost:5173/");
@@ -49,7 +60,7 @@ const createWindow = async () => {
 };
 
 app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") app.quit();
+  app.quit();
 });
 
 if (require("electron-squirrel-startup")) app.quit();
