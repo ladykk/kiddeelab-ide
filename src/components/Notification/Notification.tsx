@@ -1,27 +1,16 @@
 import {
-  ArrowPathIcon,
   CheckCircleIcon,
-  ExclamationCircleIcon,
-  InformationCircleIcon,
   XCircleIcon,
+  ExclamationCircleIcon,
+  ArrowPathIcon,
+  InformationCircleIcon,
 } from "@heroicons/react/24/solid";
-import { Spinner, Toast } from "flowbite-react";
-import { useAppDispatch, useAppSelector } from "../redux/store";
-import { removeToast, selectToasts } from "../redux/toast";
-import { Toast as ToastType } from "../types/toast";
+import { Toast, Spinner } from "flowbite-react";
+import { useAppDispatch } from "../../redux/store";
+import { removeToast } from "../../redux/toast";
+import { Toast as ToastType } from "../../types/toast";
 
-export function NotificationPane() {
-  const toasts = useAppSelector(selectToasts);
-  return (
-    <div className="absolute top-2 right-2 flex flex-col gap-2 z-10">
-      {toasts.map((toast) => (
-        <Notification key={toast.id} info={toast} />
-      ))}
-    </div>
-  );
-}
-
-export function Notification({ info }: { info: ToastType }) {
+export default function Notification({ info }: { info: ToastType }) {
   const dispatch = useAppDispatch();
   return (
     <Toast>

@@ -1,12 +1,12 @@
 import { Spinner } from "flowbite-react";
 import { useEffect, useRef } from "react";
-import { useAppDispatch, useAppSelector } from "../redux/store";
-import { initWorkspace, selectProject } from "../redux/project";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
+import { initWorkspace, selectProject } from "../../redux/project";
 import { svgResize } from "blockly";
-import "../styles/blockly.css";
-import { NotificationPane } from "./Notification";
+import "../../styles/blockly.css";
+import NotificationPane from "../Notification/NotificationPane";
 
-function Workspace() {
+export default function Workspace() {
   // [Hooks]
   const dispatch = useAppDispatch();
 
@@ -92,5 +92,3 @@ function Workspace() {
     </div>
   );
 }
-
-export default Workspace;
