@@ -8,7 +8,7 @@ import SaveAsProject from "./SaveAsProject";
 import SaveProject from "./SaveProject";
 import Undo from "./Undo";
 import Redo from "./Redo";
-import LiveCodeToggle from "./LiveCode";
+import CodeToggle from "./Code";
 
 function MenuBar() {
   return (
@@ -35,7 +35,7 @@ function MenuBar() {
       <ProjectName />
       <div className="flex h-full items-center gap-2 mr-2 flex-1 justify-end">
         <SerialMonitor />
-        <LiveCodeToggle />
+        <CodeToggle />
       </div>
     </div>
   );

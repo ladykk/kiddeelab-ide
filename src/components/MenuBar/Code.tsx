@@ -2,7 +2,7 @@ import { Button, ToggleSwitch } from "flowbite-react";
 import { selectProject, setShowCode } from "../../redux/project";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 
-export default function LiveCodeToggle() {
+export default function CodeToggle() {
   const { showCode, deviceId } = useAppSelector(selectProject);
   const dispatch = useAppDispatch();
   const handleCodeSwitch = () => {
@@ -19,7 +19,7 @@ export default function LiveCodeToggle() {
       <ToggleSwitch
         checked={showCode}
         onChange={() => {}}
-        label="Live Code"
+        label="Code"
         disabled={!deviceId}
       />
     </Button>

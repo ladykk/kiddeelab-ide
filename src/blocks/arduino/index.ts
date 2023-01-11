@@ -371,6 +371,20 @@ ArduinoGenerator["string_length"] = function (block: Block) {
   return [`${base}.length()`, ORDER.ATOMIC];
 };
 
+ArduinoGenerator["string_compare"] = function (block: Block) {
+  const base: string = ArduinoGenerator.valueToCode(
+    block,
+    "base",
+    ORDER.ATOMIC
+  );
+  const comparator: string = ArduinoGenerator.valueToCode(
+    block,
+    "comparator",
+    ORDER.ATOMIC
+  );
+  return [`${base}.equals(${comparator})`, ORDER.ATOMIC];
+};
+
 ArduinoGenerator["variable_number_get"] =
   ArduinoGenerator["variable_string_get"] =
   ArduinoGenerator["variable_boolean_get"] =
@@ -486,7 +500,7 @@ export const codeFormator = (
   const declare_variables = variables.map(
     (v) =>
       `${
-        v.type === "Logic" ? "bool" : v.type === "String" ? "string" : "double"
+        v.type === "Logic" ? "bool" : v.type === "String" ? "String" : "double"
       }${v.size ? `[${v.size}]` : ""} ${v.name};`
   );
 

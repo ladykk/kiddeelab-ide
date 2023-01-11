@@ -1,7 +1,7 @@
 import MenuBar from "./components/MenuBar";
 import Workspace from "./components/Workspace";
 import "./blocks";
-import LiveCode from "./components/Code/LiveCode";
+import LiveCode from "./components/Code";
 import Device from "./components/Device";
 import DeviceManage from "./components/Device/DeviceManage";
 import { Fragment } from "react";
