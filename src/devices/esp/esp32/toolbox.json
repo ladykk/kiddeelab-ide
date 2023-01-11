@@ -51,7 +51,7 @@
           "type": "pin_analog_write",
           "inputs": {
             "pin": { "block": { "type": "pin_esp_32" } },
-            "output": { "block": { "type": "pin_analog_output" } }
+            "output": { "block": { "type": "pin_pwm_output" } }
           }
         }
       ]

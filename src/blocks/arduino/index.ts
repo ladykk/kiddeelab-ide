@@ -77,7 +77,7 @@ ArduinoGenerator["pin_analog_write"] = function (block: Block) {
   return `analogWrite(${pin}, ${output});\n`;
 };
 
-ArduinoGenerator["pin_analog_output"] = function (block: Block) {
+ArduinoGenerator["pin_pwm_output"] = function (block: Block) {
   const output: number = block.getFieldValue("output");
   return [`${output}`, ORDER.ATOMIC];
 };
