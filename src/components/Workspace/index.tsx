@@ -5,6 +5,7 @@ import { initWorkspace, selectProject } from "../../redux/project";
 import { svgResize } from "blockly";
 import "../../styles/blockly.css";
 import NotificationPane from "../Notification/NotificationPane";
+import { setUpload, setVerify } from "../../redux/core";
 
 export default function Workspace() {
   // [Hooks]
@@ -67,6 +68,15 @@ export default function Workspace() {
         window.removeEventListener("resize", onResize);
       };
     }
+  }, [workspace]);
+
+  // E - Update core when workspace change.
+  useEffect(() => {
+    const onChange = () => {
+      dispatch(setVerify(false));
+      dispatch(setUpload(false));
+    };
+    if (workspace) workspace.addChangeListener(onChange);
   }, [workspace]);
 
   return (

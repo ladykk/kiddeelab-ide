@@ -4,7 +4,7 @@ const writeFile = util.promisify(require("fs").writeFile);
 const os = require("os");
 const CORE = require("../../core");
 
-const verify = async (fqbn, code) => {
+module.exports.buildVerify = async (event, fqbn, code) => {
   try {
     // Create Sketch
     const newSketch = await exec(`${CORE} sketch new KiddeeIDE`);
@@ -47,22 +47,14 @@ const verify = async (fqbn, code) => {
   } catch (e) {
     return {
       status: "error",
-      reason: "Something went wrong.",
+      reason: "Compiled failed.",
       error: e,
     };
   }
 };
 
-module.exports.buildVerify = async (event, fqbn, code) => {
-  return await verify(fqbn, code);
-};
-
-module.exports.buildUpload = async (event, port, fqbn, code) => {
+module.exports.buildUpload = async (event, port, fqbn) => {
   try {
-    const verifyResult = await verify(fqbn, code);
-    if (verifyResult.status === "error") return verifyResult;
-
-    // Upload
     const { stdout, stderr } = await exec(
       `${CORE} upload -p ${port} --fqbn ${fqbn} KiddeeIDE`
     );
@@ -77,12 +69,12 @@ module.exports.buildUpload = async (event, port, fqbn, code) => {
     return {
       status: "success",
       reason: "Successfully uploaded.",
-      output: verifyResult.output,
+      output: stdout,
     };
   } catch (e) {
     return {
       status: "error",
-      reason: "Something went wrong.",
+      reason: "Upload failed.",
       error: e,
     };
   }

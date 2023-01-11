@@ -2,6 +2,7 @@ import { CheckIcon } from "@heroicons/react/24/solid";
 import { Button, Spinner } from "flowbite-react";
 import { useState, useEffect } from "react";
 import ArduinoGenerator, { codeFormator } from "../../blocks/arduino";
+import { selectCore, setVerify, setVerifying } from "../../redux/core";
 import { selectProject } from "../../redux/project";
 import { useAppSelector, useAppDispatch } from "../../redux/store";
 import { removeToast, addToast } from "../../redux/toast";
@@ -9,8 +10,8 @@ import { removeToast, addToast } from "../../redux/toast";
 export default function VerifyButton({ disabled }: { disabled: boolean }) {
   const { workspace, variables, functions, deviceId } =
     useAppSelector(selectProject);
+  const { isVerify, isVerifying, isUploading } = useAppSelector(selectCore);
   const dispatch = useAppDispatch();
-  const [isVerifying, setVerifying] = useState<boolean>(false);
 
   useEffect(() => {
     if (workspace) {
@@ -24,7 +25,7 @@ export default function VerifyButton({ disabled }: { disabled: boolean }) {
 
   const onClick = async () => {
     if (workspace && deviceId) {
-      setVerifying(true);
+      dispatch(setVerifying());
       dispatch(removeToast("buildVerifyResult"));
       dispatch(
         addToast({
@@ -59,14 +60,18 @@ export default function VerifyButton({ disabled }: { disabled: boolean }) {
           })
         );
       }
+      dispatch(setVerify(result.status === "success"));
       dispatch(removeToast("buildVerify"));
-
-      setVerifying(false);
     }
   };
 
   return (
-    <Button size="sm" disabled={disabled || isVerifying} onClick={onClick}>
+    <Button
+      size="sm"
+      color={isVerifying ? undefined : isVerify ? "success" : "failure"}
+      disabled={disabled || isVerifying || isUploading}
+      onClick={onClick}
+    >
       {isVerifying ? (
         <Spinner size="sm" className="mr-2" />
       ) : (

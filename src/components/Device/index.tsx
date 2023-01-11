@@ -23,7 +23,6 @@ function Device() {
       </div>
       <div className="flex flex-col items-center justify-center flex-1 gap-3 relative">
         <DevicePreview deviceId={deviceId} />
-        <PortSelector />
       </div>
     </div>
   );

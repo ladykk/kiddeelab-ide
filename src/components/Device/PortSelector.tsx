@@ -25,23 +25,21 @@ export default function () {
 
   return (
     <Fragment>
-      <div className="absolute bottom-2 left-4 right-4">
-        {deviceId && (
-          <Tooltip
-            content={port ? port : "Not selected"}
-            style="light"
-            placement="bottom"
+      {deviceId && (
+        <Tooltip
+          content={port ? port : "Not selected"}
+          style="light"
+          placement="bottom"
+        >
+          <Button
+            size="sm"
+            color={port ? "success" : "failure"}
+            onClick={() => setShow(true)}
           >
-            <Button
-              size="sm"
-              color={port ? "success" : "failure"}
-              onClick={() => setShow(true)}
-            >
-              COM Port
-            </Button>
-          </Tooltip>
-        )}
-      </div>
+            COM Port
+          </Button>
+        </Tooltip>
+      )}
 
       <Modal show={show} onClose={() => setShow(false)} size="lg">
         <Modal.Header>

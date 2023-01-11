@@ -7,8 +7,7 @@ contextBridge.exposeInMainWorld("file", {
 
 contextBridge.exposeInMainWorld("build", {
   verify: (fqbn, code) => ipcRenderer.invoke("build/verify", fqbn, code),
-  upload: (port, fqbn, code) =>
-    ipcRenderer.invoke("build/upload", port, fqbn, code),
+  upload: (port, fqbn) => ipcRenderer.invoke("build/upload", port, fqbn),
 });
 
 contextBridge.exposeInMainWorld("device", {

@@ -12,11 +12,7 @@ declare global {
     };
     build: {
       verify: (fqbn: string, code: string) => Promise<BuildResult>;
-      upload: (
-        port: string,
-        fqbn: string,
-        code: string
-      ) => Promise<BuildResult>;
+      upload: (port: string, fqbn: string) => Promise<BuildResult>;
     };
     device: {
       fetchDevice: () => Promise<Array<DevicePort>>;

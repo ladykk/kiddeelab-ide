@@ -1,12 +1,21 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
+import { setVerify, setUpload } from "../../redux/core";
 import { selectProject } from "../../redux/project";
-import { useAppSelector } from "../../redux/store";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 import AddCodeModal from "./AddCodeModal";
 import FunctionCard from "./FunctionCard";
 import VariableCard from "./VariableCard";
 
 export default function CodeManage() {
   const { variables, functions } = useAppSelector(selectProject);
+  const dispatch = useAppDispatch();
+
+  // E - Update core when workspace change.
+  useEffect(() => {
+    dispatch(setVerify(false));
+    dispatch(setUpload(false));
+  }, [variables, functions]);
+
   return (
     <div>
       <div className="bg-gray-50 px-4 py-2 border-b flex items-center justify-between">

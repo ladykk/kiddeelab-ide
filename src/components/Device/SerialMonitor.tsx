@@ -70,7 +70,7 @@ export default function SerialMonitor() {
   return (
     <Fragment>
       <Button onClick={() => setShow(true)} disabled={disabled}>
-        <ChatBubbleOvalLeftIcon className="w-4 mr-2" />
+        <ChatBubbleOvalLeftIcon className="w-5 mr-2" />
         Serial Monitor
       </Button>
       <Modal
