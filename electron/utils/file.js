@@ -8,7 +8,7 @@ module.exports.fileOpen = (mainWindow) => async (event, path) => {
       title: "Open project",
       defaultPath: `${os.homedir()}/Desktop`,
       buttonLabel: "Open",
-      filters: [{ name: "KiddeeLab IDE Project", extensions: ["kide"] }],
+      filters: [{ name: "KiddeeLab IDE Project", extensions: ["kdle"] }],
       properties: ["openFile"],
     });
     if (canceled || !filePaths)
@@ -33,7 +33,7 @@ module.exports.fileSave = (mainWindow) => async (event, project, path) => {
       title: "Save project",
       defaultPath: `${os.homedir()}/Desktop`,
       buttonLabel: "Save",
-      filters: [{ name: "KiddeeLab IDE Project", extensions: ["kide"] }],
+      filters: [{ name: "KiddeeLab IDE Project", extensions: ["kdle"] }],
       properties: ["createDirectory"],
     });
     if (canceled || !filePath)
