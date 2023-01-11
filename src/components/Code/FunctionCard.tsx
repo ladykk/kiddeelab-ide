@@ -26,7 +26,7 @@ export default function FunctionCard({ info }: { info: Function }) {
           background:
             info.return === "String"
               ? STRING_COLOR
-              : info.return === "Boolean"
+              : info.return === "Logic"
               ? BOOLEAN_COLOR
               : info.return === "Void"
               ? VOID_COLOR
@@ -46,13 +46,13 @@ export default function FunctionCard({ info }: { info: Function }) {
                 background:
                   arg.type === "String"
                     ? STRING_COLOR
-                    : arg.type === "Boolean"
+                    : arg.type === "Logic"
                     ? BOOLEAN_COLOR
                     : NUMBER_COLOR,
                 borderColor:
                   arg.type === "String"
                     ? STRING_COLOR
-                    : arg.type === "Boolean"
+                    : arg.type === "Logic"
                     ? BOOLEAN_COLOR
                     : NUMBER_COLOR,
               }}

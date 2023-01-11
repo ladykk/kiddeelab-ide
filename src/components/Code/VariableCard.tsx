@@ -21,7 +21,7 @@ export default function VariableCard({ info }: { info: Variable }) {
           background:
             info.type === "String"
               ? STRING_COLOR
-              : info.type === "Boolean"
+              : info.type === "Logic"
               ? BOOLEAN_COLOR
               : NUMBER_COLOR,
         }}

@@ -1,4 +1,4 @@
-export type VariableTypes = "String" | "Number" | "Boolean";
+export type VariableTypes = "String" | "Number" | "Logic";
 
 export type Variable = {
   name: string;
@@ -6,7 +6,7 @@ export type Variable = {
   size?: 0;
 };
 
-export type FunctionReturn = "Void" | "Number" | "String" | "Boolean";
+export type FunctionReturn = "Void" | "Number" | "String" | "Logic";
 
 export type Function = {
   name: string;

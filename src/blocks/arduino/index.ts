@@ -317,7 +317,7 @@ ArduinoGenerator["boolean_op"] = function (block: Block) {
   return [`${base} ${operator} ${comparator}`, ORDER.ATOMIC];
 };
 
-ArduinoGenerator["boolean_compare"] = function (block: Block) {
+ArduinoGenerator["number_compare"] = function (block: Block) {
   const base: string = ArduinoGenerator.valueToCode(
     block,
     "base",
@@ -486,11 +486,7 @@ export const codeFormator = (
   const declare_variables = variables.map(
     (v) =>
       `${
-        v.type === "Boolean"
-          ? "bool"
-          : v.type === "String"
-          ? "string"
-          : "double"
+        v.type === "Logic" ? "bool" : v.type === "String" ? "string" : "double"
       }${v.size ? `[${v.size}]` : ""} ${v.name};`
   );
 
@@ -501,7 +497,7 @@ export const codeFormator = (
     const func = functions.find((f) => f.name === func_name);
     if (!func) return "";
     const format = `${
-      func.return === "Boolean"
+      func.return === "Logic"
         ? "bool"
         : func.return === "String"
         ? "String"
@@ -512,7 +508,7 @@ export const codeFormator = (
       .map(
         (a) =>
           `${
-            a.type === "Boolean"
+            a.type === "Logic"
               ? "bool"
               : a.type === "String"
               ? "String"

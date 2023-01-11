@@ -447,6 +447,42 @@
     "helpUrl": ""
   },
   {
+    "type": "number_compare",
+    "message0": "%1 %2 %3 %4",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "base",
+        "check": "Number"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "operator",
+        "options": [
+          ["is equal", "=="],
+          ["is not equal", "!="],
+          ["more than", ">"],
+          ["less than", "<"],
+          ["more than or equal", ">="],
+          ["less than or equal", "<="]
+        ]
+      },
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_value",
+        "name": "comparator",
+        "check": "Number"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Boolean",
+    "colour": "#59C059",
+    "tooltip": "Number comparation.",
+    "helpUrl": ""
+  },
+  {
     "type": "boolean_data",
 
     "message0": "%1",
@@ -669,40 +705,6 @@
     "helpUrl": ""
   },
   {
-    "type": "boolean_compare",
-    "message0": "%1 %2 %3 %4",
-    "args0": [
-      {
-        "type": "input_value",
-        "name": "base"
-      },
-      {
-        "type": "field_dropdown",
-        "name": "operator",
-        "options": [
-          ["is equal", "=="],
-          ["is not equal", "!="],
-          ["more than", ">"],
-          ["less than", "<"],
-          ["more than or equal", ">="],
-          ["less than or equal", "<="]
-        ]
-      },
-      {
-        "type": "input_dummy"
-      },
-      {
-        "type": "input_value",
-        "name": "comparator"
-      }
-    ],
-    "inputsInline": true,
-    "output": "Boolean",
-    "colour": "#9966FF",
-    "tooltip": "Boolean comparation.",
-    "helpUrl": ""
-  },
-  {
     "type": "boolean_not",
     "message0": "not %1",
     "args0": [
@@ -794,6 +796,27 @@
     "output": "Number",
     "colour": "#FF6680",
     "tooltip": "Return length of the string.",
+    "helpUrl": ""
+  },
+  {
+    "type": "string_compare",
+    "message0": "%1 is equals %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "base",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "comparator",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Boolean",
+    "colour": "#FF6680",
+    "tooltip": "String comparation.",
     "helpUrl": ""
   },
   {

@@ -113,7 +113,7 @@ const createVariable = (variable: Variable) => {
           },
         ];
       break;
-    case "Boolean":
+    case "Logic":
       contents = [
         ...contents,
         {
@@ -274,7 +274,7 @@ const createCallFunction = (func: Function) => {
             ? VOID_COLOR
             : func.return === "String"
             ? STRING_COLOR
-            : func.return === "Boolean"
+            : func.return === "Logic"
             ? BOOLEAN_COLOR
             : NUMBER_COLOR
         );

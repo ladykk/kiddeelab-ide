@@ -78,7 +78,7 @@ export default function AddVariableForm({
         </div>
         <Select id="type" value={form.type} onChange={handleOnChange} required>
           <option value="Number">Number</option>
-          <option value="Boolean">Boolean</option>
+          <option value="Logic">Logic</option>
           <option value="String">String</option>
         </Select>
       </div>

@@ -209,7 +209,7 @@
     },
     {
       "kind": "category",
-      "name": "Boolean",
+      "name": "Logic",
       "colour": "#9966FF",
       "contents": [
         {
@@ -224,7 +224,7 @@
           "kind": "block",
           "type": "boolean_op"
         },
-        { "kind": "block", "type": "boolean_compare" }
+        { "kind": "block", "type": "number_compare" }
       ]
     },
     {

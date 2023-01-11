@@ -137,7 +137,7 @@ export default function AddFunctionForm({
         >
           <option value="Void">Void</option>
           <option value="Number">Number</option>
-          <option value="Boolean">Boolean</option>
+          <option value="Logic">Logic</option>
           <option value="String">String</option>
         </Select>
       </div>
@@ -171,7 +171,7 @@ export default function AddFunctionForm({
                     background:
                       arg.type === "String"
                         ? STRING_COLOR
-                        : arg.type === "Boolean"
+                        : arg.type === "Logic"
                         ? BOOLEAN_COLOR
                         : NUMBER_COLOR,
                   }}
@@ -202,7 +202,7 @@ export default function AddFunctionForm({
                       required
                     >
                       <option value="Number">Number</option>
-                      <option value="Boolean">Boolean</option>
+                      <option value="Logic">Logic</option>
                       <option value="String">String</option>
                     </Select>
                   </Table.Cell>
