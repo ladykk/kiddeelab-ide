@@ -10,7 +10,6 @@ export default function Functions() {
       <AddFunctionModal />
       {functions.length > 0 && (
         <div className="flex flex-col gap-3">
-          <p className="font-bold text-gray-500">Functions</p>
           <div className="flex flex-col gap-1">
             {functions.map((f) => (
               <FunctionCard key={f.name} info={f} />

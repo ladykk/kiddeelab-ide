@@ -39,31 +39,37 @@ export default function FunctionCard({ info }: { info: Function }) {
           <p className="text-white text-sm font-medium">{info.return}</p>
         </div>
         <div className="bg-white grid grid-cols-2 gap-1 gap-x-5 p-2 rounded-md">
-          {info.args.map((arg) => (
-            <div
-              className="text-sm text-white font-bold flex items-center justify-between border-2 p-2 rounded-md"
-              style={{
-                background:
-                  arg.type === "String"
-                    ? STRING_COLOR
-                    : arg.type === "Logic"
-                    ? BOOLEAN_COLOR
-                    : NUMBER_COLOR,
-                borderColor:
-                  arg.type === "String"
-                    ? STRING_COLOR
-                    : arg.type === "Logic"
-                    ? BOOLEAN_COLOR
-                    : NUMBER_COLOR,
-              }}
-            >
-              <p>{arg.name}</p>
-              <p>
-                {arg.type}
-                {arg.size ? `[${arg.size}]` : ""}
-              </p>
-            </div>
-          ))}
+          {info.args.length > 0 ? (
+            info.args.map((arg) => (
+              <div
+                className="text-sm text-white font-bold flex items-center justify-between border-2 p-2 rounded-md"
+                style={{
+                  background:
+                    arg.type === "String"
+                      ? STRING_COLOR
+                      : arg.type === "Logic"
+                      ? BOOLEAN_COLOR
+                      : NUMBER_COLOR,
+                  borderColor:
+                    arg.type === "String"
+                      ? STRING_COLOR
+                      : arg.type === "Logic"
+                      ? BOOLEAN_COLOR
+                      : NUMBER_COLOR,
+                }}
+              >
+                <p>{arg.name}</p>
+                <p>
+                  {arg.type}
+                  {arg.size ? `[${arg.size}]` : ""}
+                </p>
+              </div>
+            ))
+          ) : (
+            <p className="text-sm text-center col-span-2 text-gray-500">
+              No input
+            </p>
+          )}
         </div>
       </div>
       <Modal show={isShow} onClose={handleModal} size="sm">

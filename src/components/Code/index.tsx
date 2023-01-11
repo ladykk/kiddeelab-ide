@@ -27,7 +27,7 @@ export default function Code() {
     }
   });
 
-  useEffect(onWorkspaceChange, [variables, functions, showCode]);
+  useEffect(onWorkspaceChange, [variables, functions, pins, showCode]);
 
   return showCode ? (
     <div className="max-w-[450px] w-full h-full bg-gray-100 flex flex-col z-10 border-l">
