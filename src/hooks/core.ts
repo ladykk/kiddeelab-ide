@@ -42,7 +42,7 @@ export const useInitializeCore = function () {
           type: "failure",
           title: "Core not installed",
           message:
-            "Arduino CLI is not installed on the machine. You will be able to use IDE for editing only.",
+            "Cannot loading Arduino core. Please re-install the program.",
         })
       );
   }, [isFetchInitial, isInstalled]);

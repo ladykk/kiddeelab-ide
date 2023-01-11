@@ -8,6 +8,7 @@ export type Device = {
   name: string;
   platform: string;
   pins: Array<string>;
+  bootRequired: boolean;
   pic?: any;
   toolbox: ToolboxDefinition;
 };

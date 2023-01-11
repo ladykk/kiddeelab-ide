@@ -25,6 +25,7 @@ export default function DeviceCard({
             id: `installCore:${device.id}`,
             type: "loading",
             title: `Loading dependencies for ${device.name}`,
+            message: "This may take a while. Please wait...",
           })
         );
         await window.core
@@ -36,6 +37,8 @@ export default function DeviceCard({
                   id: `installCoreStatus:${device.id}`,
                   type: "success",
                   title: `Dependencies installed`,
+                  message:
+                    "Now, you can verify and upload your project to the device.",
                 })
               );
             } else {
@@ -44,6 +47,8 @@ export default function DeviceCard({
                   id: `installCoreStatus:${device.id}`,
                   type: "failure",
                   title: `Dependencies cannot be installed`,
+                  message:
+                    "Restart or re-install the program and try to select the device again.",
                 })
               );
             }
@@ -54,6 +59,8 @@ export default function DeviceCard({
                 id: `installCoreStatus:${device.id}`,
                 type: "failure",
                 title: `Dependencies cannot be installed`,
+                message:
+                  "Restart or re-install the program and try to select the device again.",
               })
             );
           })

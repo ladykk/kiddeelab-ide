@@ -16,6 +16,7 @@ export default {
   id: "arduino:avr:uno",
   name: "Arduino UNO",
   platform: "arduino:avr",
+  bootRequired: false,
   pins: [
     "0",
     "1",

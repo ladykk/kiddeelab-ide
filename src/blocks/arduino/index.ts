@@ -539,7 +539,7 @@ export const codeFormator = (
           }${a.size ? `[${a.size}]` : ""} ${a.name}`
       )
       .join(", ")}) {${s.substring(s.split("\n")[0].length)}${
-      index === split_functions.length - 1 ? "\n" : ""
+      index + 1 === split_functions.length ? "\n" : ""
     }}\n`;
     return format;
   });
@@ -547,9 +547,13 @@ export const codeFormator = (
   const structure =
     split.find((s) => s.startsWith("structure"))?.substring(10) ?? "";
 
-  const merge = `${declare_pins.join("\n")}\n\n${
+  const merge = `${
+    declare_pins.join("\n") + (declare_pins.length > 0 ? "\n\n" : "")
+  }${
     declare_variables.join("\n") + (declare_variables.length > 0 ? "\n\n" : "")
-  }${declare_functions.join("\n")}${structure}`;
+  }${
+    declare_functions.join("\n") + (declare_functions.length > 0 ? "\n" : "")
+  }${structure}`;
   return merge;
 };
 

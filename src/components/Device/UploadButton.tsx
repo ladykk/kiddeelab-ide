@@ -1,6 +1,7 @@
+import deviceLists from "../../devices";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
 import { Button, Spinner, Tooltip } from "flowbite-react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import ArduinoGenerator, { codeFormator } from "../../blocks/arduino";
 import {
   selectCore,
@@ -19,6 +20,7 @@ export default function UploadButton({ disabled }: { disabled: boolean }) {
   const dispatch = useAppDispatch();
   const { isVerify, isVerifying, isUploading, isUpload, uploadTimestamp } =
     useAppSelector(selectCore);
+  const device = deviceId ? deviceLists[deviceId] : null;
 
   useEffect(() => {
     if (workspace) {
@@ -52,7 +54,7 @@ export default function UploadButton({ disabled }: { disabled: boolean }) {
               id: "buildVerifyResult",
               type: "success",
               title: result.reason,
-              message: result.output,
+              message: result.output.split("[")[0],
             })
           );
           setTimeout(() => {
@@ -64,7 +66,10 @@ export default function UploadButton({ disabled }: { disabled: boolean }) {
               id: "buildVerifyResult",
               type: "failure",
               title: result.reason,
-              message: result.error.message,
+              message: result.error.message
+                .split("\n")
+                .filter((s, i) => i > 0)
+                .join("\n"),
             })
           );
         }
@@ -81,6 +86,9 @@ export default function UploadButton({ disabled }: { disabled: boolean }) {
           id: "buildUpload",
           type: "loading",
           title: "Uploading project",
+          message: device?.bootRequired
+            ? `Some ${device.name} required to press BOOT button when uploading the project.`
+            : undefined,
         })
       );
 
@@ -91,7 +99,7 @@ export default function UploadButton({ disabled }: { disabled: boolean }) {
             id: "buildUploadResult",
             type: "success",
             title: result.reason,
-            message: result.output,
+            message: "Project is uploaded to your device.",
           })
         );
         setTimeout(() => {
@@ -103,7 +111,11 @@ export default function UploadButton({ disabled }: { disabled: boolean }) {
             id: "buildUploadResult",
             type: "failure",
             title: result.reason,
-            message: result.error.message,
+            message: `Check your device connection or port and try again.${
+              device?.bootRequired
+                ? ` Some ${device.name} required to press BOOT button when uploading the project.`
+                : ""
+            }`,
           })
         );
       }

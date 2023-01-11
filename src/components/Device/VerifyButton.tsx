@@ -56,7 +56,10 @@ export default function VerifyButton({ disabled }: { disabled: boolean }) {
             id: "buildVerifyResult",
             type: "failure",
             title: result.reason,
-            message: result.error.message,
+            message: result.error.message
+              .split("\n")
+              .filter((s, i) => i > 0)
+              .join("\n"),
           })
         );
       }
