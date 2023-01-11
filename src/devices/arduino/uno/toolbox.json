@@ -131,7 +131,10 @@
           "inputs": {
             "period": {
               "block": {
-                "type": "number_data"
+                "type": "number_data",
+                "fields": {
+                  "output": 1
+                }
               }
             }
           }
@@ -146,7 +149,10 @@
           "inputs": {
             "round": {
               "block": {
-                "type": "number_data"
+                "type": "number_data",
+                "fields": {
+                  "output": 2
+                }
               }
             }
           }
