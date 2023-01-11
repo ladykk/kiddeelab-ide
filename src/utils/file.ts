@@ -7,7 +7,7 @@ import {
   setChange,
 } from "../redux/project";
 import { AppDispatch } from "../redux/store";
-import { OpenResult, ProjectJson } from "../types/project";
+import { ProjectJson } from "../types/project";
 
 export const createProjectJson = (
   project: ProjectState
@@ -18,6 +18,7 @@ export const createProjectJson = (
     projectName: project.projectName,
     workspace: workspace,
     deviceId: project.deviceId,
+    pins: project.pins,
     variables: project.variables,
     functions: project.functions,
   };
@@ -28,6 +29,7 @@ export const readProjectJson = (workspace: WorkspaceSvg, json: ProjectJson) => {
   return {
     projectName: json.projectName,
     deviceId: json.deviceId,
+    pins: json.pins,
     variables: json.variables,
     functions: json.functions,
   };

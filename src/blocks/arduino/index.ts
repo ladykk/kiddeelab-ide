@@ -1,5 +1,5 @@
 import { defineBlocksWithJsonArray, CodeGenerator, Block } from "blockly";
-import { Variable, Function } from "../../types/code";
+import { Variable, Function, Pin } from "../../types/code";
 import blocks from "./block.json";
 
 defineBlocksWithJsonArray(blocks);
@@ -42,6 +42,11 @@ ArduinoGenerator["pin_mode"] = function (block: Block) {
   const pin: string = ArduinoGenerator.valueToCode(block, "pin", ORDER.ATOMIC);
   const mode: string = block.getFieldValue("mode");
   return `pinMode(${pin}, ${mode});\n`;
+};
+
+ArduinoGenerator["pin_define"] = function (block: Block) {
+  var pin = block.getFieldValue("pin");
+  return [`${pin.toUpperCase()}`, ORDER.ATOMIC];
 };
 
 ArduinoGenerator["pin_digital_read"] = function (block: Block) {
@@ -491,10 +496,14 @@ ArduinoGenerator["function_void"] = function (block: Block) {
 
 export const codeFormator = (
   raw: string,
+  pins: Array<Pin>,
   variables: Array<Variable>,
   functions: Array<Function>
 ) => {
   const split = raw.split("-> ");
+
+  // Declare pins
+  const declare_pins = pins.map((p) => `#define ${p.name} ${p.pin}`);
 
   // Declare variables
   const declare_variables = variables.map(
@@ -538,7 +547,7 @@ export const codeFormator = (
   const structure =
     split.find((s) => s.startsWith("structure"))?.substring(10) ?? "";
 
-  const merge = `${
+  const merge = `${declare_pins.join("\n")}\n\n${
     declare_variables.join("\n") + (declare_variables.length > 0 ? "\n\n" : "")
   }${declare_functions.join("\n")}${structure}`;
   return merge;

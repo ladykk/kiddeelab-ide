@@ -1,10 +1,11 @@
-import { Variable, Function } from "./code";
+import { Variable, Function, Pin } from "./code";
 import { DeviceIds } from "./device";
 
 export type ProjectJson = {
   projectName: string;
   workspace: { [index: string]: any };
   deviceId: DeviceIds;
+  pins: Array<Pin>;
   variables: Array<Variable>;
   functions: Array<Function>;
 };

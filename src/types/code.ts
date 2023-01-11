@@ -13,3 +13,8 @@ export type Function = {
   args: Array<Variable>;
   return: FunctionReturn;
 };
+
+export type Pin = {
+  name: string;
+  pin: string;
+};

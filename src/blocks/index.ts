@@ -1,5 +1,5 @@
 import { Blocks, Block, FieldTextInput } from "blockly";
-import { Variable, Function } from "../types/code";
+import { Variable, Function, Pin } from "../types/code";
 import "./arduino";
 import ArduinoGenerator, { ORDER } from "./arduino";
 
@@ -21,6 +21,33 @@ export const STRING_COLOR = COLOR.MORE;
 export const NUMBER_COLOR = COLOR.OPERATOR;
 export const BOOLEAN_COLOR = COLOR.LOOKS;
 export const VOID_COLOR = COLOR.TEXT;
+export const DEVICE_COLOR = COLOR.EVENTS;
+
+const createPin = (pin: Pin) => {
+  let contents: Array<{ [index: string]: any }> = [];
+  contents = [
+    ...contents,
+    {
+      kind: "block",
+      type: "pin_define",
+      fields: { pin: pin.name },
+    },
+  ];
+  return contents;
+};
+
+export const createPins = (pins: Array<Pin>) => {
+  let contents: Array<{ [index: string]: any }> = [];
+  pins.forEach((pin) => {
+    contents = [...contents, ...createPin(pin)];
+  });
+  return {
+    kind: "category",
+    name: "Pins",
+    colour: DEVICE_COLOR,
+    contents,
+  };
+};
 
 const createVariable = (variable: Variable) => {
   let contents: Array<{ [index: string]: any }> = [];

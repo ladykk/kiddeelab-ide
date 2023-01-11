@@ -4,9 +4,9 @@ import { DeviceIds } from "../types/device";
 import deviceLists from "../devices";
 import { defaultOptions } from "../configs/workspace";
 import { RootState } from "./store";
-import { Variable, Function } from "../types/code";
+import { Variable, Function, Pin } from "../types/code";
 import { ToolboxDefinition } from "blockly/core/utils/toolbox";
-import { createFunctions, createVariables } from "../blocks";
+import { createFunctions, createPins, createVariables } from "../blocks";
 import { ProjectJson } from "../types/project";
 import { readProjectJson } from "../utils/file";
 
@@ -16,6 +16,7 @@ type State = {
   deviceId: DeviceIds | null;
   port: string;
   showCode: boolean;
+  pins: Array<Pin>;
   variables: Array<Variable>;
   functions: Array<Function>;
   isChange: boolean;
@@ -29,22 +30,25 @@ const initialState: State = {
   deviceId: null,
   port: "",
   showCode: false,
+  pins: [],
   variables: [],
   functions: [],
   isChange: false,
 };
 
 const injectWorkspace = (
+  pins: Array<Pin>,
   variables: Array<Variable>,
   functions: Array<Function>,
   deviceId?: DeviceIds
 ): WorkspaceSvg =>
   Blockly.inject("blocklyDiv", {
     ...defaultOptions,
-    toolbox: createToolbox(variables, functions, deviceId),
+    toolbox: createToolbox(pins, variables, functions, deviceId),
   });
 
 const createToolbox = (
+  pins: Array<Pin>,
   variables: Array<Variable>,
   functions: Array<Function>,
   deviceId?: DeviceIds | null
@@ -57,7 +61,8 @@ const createToolbox = (
     kind: "categoryToolbox",
     contents: [],
   };
-  if (variables.length > 0 || functions.length > 0) {
+  if (pins.length > 0 || variables.length > 0 || functions.length > 0) {
+    if (pins.length > 0) toolbox.contents.push(createPins(pins));
     if (variables.length > 0) toolbox.contents.push(createVariables(variables));
     if (functions.length > 0) toolbox.contents.push(createFunctions(functions));
     toolbox.contents.push({ kind: "sep" });
@@ -79,7 +84,11 @@ const slice = createSlice({
     initWorkspace: (state) => {
       return {
         ...initialState,
-        workspace: injectWorkspace(state.variables, state.functions),
+        workspace: injectWorkspace(
+          state.pins,
+          state.variables,
+          state.functions
+        ),
       } as State;
     },
     setProjectName: (state, action: PayloadAction<string>) => {
@@ -93,6 +102,7 @@ const slice = createSlice({
       return {
         ...state,
         workspace: injectWorkspace(
+          state.pins,
           state.variables,
           state.functions,
           action.payload
@@ -107,11 +117,44 @@ const slice = createSlice({
         showCode: action.payload,
       };
     },
+    addPin: (state, action: PayloadAction<Pin>) => {
+      if (!state.workspace) return state;
+      const new_pins = [...state.pins, action.payload];
+      state.workspace.updateToolbox(
+        createToolbox(
+          new_pins,
+          state.variables,
+          state.functions,
+          state.deviceId
+        ) ?? null
+      );
+      state.pins = new_pins;
+      return state;
+    },
+    removePin: (state, action: PayloadAction<string>) => {
+      if (!state.workspace) return state;
+      const new_pins = state.pins.filter((v) => v.name !== action.payload);
+      state.workspace.updateToolbox(
+        createToolbox(
+          new_pins,
+          state.variables,
+          state.functions,
+          state.deviceId
+        ) ?? null
+      );
+      state.pins = new_pins;
+      return state;
+    },
     addVariable: (state, action: PayloadAction<Variable>) => {
       if (!state.workspace) return state;
       const new_variables = [...state.variables, action.payload];
       state.workspace.updateToolbox(
-        createToolbox(new_variables, state.functions, state.deviceId) ?? null
+        createToolbox(
+          state.pins,
+          new_variables,
+          state.functions,
+          state.deviceId
+        ) ?? null
       );
       state.variables = new_variables;
       return state;
@@ -122,7 +165,12 @@ const slice = createSlice({
         (v) => v.name !== action.payload
       );
       state.workspace.updateToolbox(
-        createToolbox(new_variables, state.functions, state.deviceId) ?? null
+        createToolbox(
+          state.pins,
+          new_variables,
+          state.functions,
+          state.deviceId
+        ) ?? null
       );
       state.variables = new_variables;
       return state;
@@ -131,7 +179,12 @@ const slice = createSlice({
       if (!state.workspace) return state;
       const new_functions = [...state.functions, action.payload];
       state.workspace.updateToolbox(
-        createToolbox(state.variables, new_functions, state.deviceId) ?? null
+        createToolbox(
+          state.pins,
+          state.variables,
+          new_functions,
+          state.deviceId
+        ) ?? null
       );
       state.functions = new_functions;
       return state;
@@ -142,7 +195,12 @@ const slice = createSlice({
         (f) => f.name !== action.payload
       );
       state.workspace.updateToolbox(
-        createToolbox(state.variables, new_functions, state.deviceId) ?? null
+        createToolbox(
+          state.pins,
+          state.variables,
+          new_functions,
+          state.deviceId
+        ) ?? null
       );
       state.functions = new_functions;
 
@@ -150,6 +208,7 @@ const slice = createSlice({
     },
     loadProjectJson: (state, action: PayloadAction<ProjectJson>) => {
       const workspace = injectWorkspace(
+        action.payload.pins,
         action.payload.variables,
         action.payload.functions,
         action.payload.deviceId
@@ -182,6 +241,8 @@ export const {
   setProjectName,
   setDeviceId,
   setShowCode,
+  addPin,
+  removePin,
   addVariable,
   removeVariable,
   addFunction,

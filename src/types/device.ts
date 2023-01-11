@@ -7,6 +7,7 @@ export type Device = {
   id: DeviceIds;
   name: string;
   platform: string;
+  pins: Array<string>;
   pic?: any;
   toolbox: ToolboxDefinition;
 };

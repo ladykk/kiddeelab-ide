@@ -25,6 +25,22 @@
     "helpUrl": ""
   },
   {
+    "type": "pin_define",
+    "message0": "%1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "pin",
+        "text": ""
+      }
+    ],
+    "inputsInline": true,
+    "output": "String",
+    "colour": "#FFBF00",
+    "tooltip": "Named Pin.",
+    "helpUrl": ""
+  },
+  {
     "type": "pin_digital_read",
     "message0": "read digital input of %1",
     "args0": [

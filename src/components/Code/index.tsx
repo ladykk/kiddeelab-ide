@@ -6,14 +6,14 @@ import SyntaxHighlighrer from "react-syntax-highlighter";
 
 export default function Code() {
   const [currentCode, setCode] = useState<string>("");
-  const { workspace, variables, functions, showCode } =
+  const { workspace, pins, variables, functions, showCode } =
     useAppSelector(selectProject);
   const dispatch = useAppDispatch();
 
   const onWorkspaceChange = () => {
     if (workspace) {
       const raw = ArduinoGenerator.workspaceToCode(workspace);
-      setCode(codeFormator(raw, variables, functions));
+      setCode(codeFormator(raw, pins, variables, functions));
       dispatch(setChange(true));
     }
   };

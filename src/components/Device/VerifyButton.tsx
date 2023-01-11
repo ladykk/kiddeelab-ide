@@ -8,7 +8,7 @@ import { useAppSelector, useAppDispatch } from "../../redux/store";
 import { removeToast, addToast } from "../../redux/toast";
 
 export default function VerifyButton({ disabled }: { disabled: boolean }) {
-  const { workspace, variables, functions, deviceId } =
+  const { workspace, pins, variables, functions, deviceId } =
     useAppSelector(selectProject);
   const { isVerify, isVerifying, isUploading } = useAppSelector(selectCore);
   const dispatch = useAppDispatch();
@@ -35,7 +35,7 @@ export default function VerifyButton({ disabled }: { disabled: boolean }) {
         })
       );
       const raw = ArduinoGenerator.workspaceToCode(workspace);
-      const code = codeFormator(raw, variables, functions);
+      const code = codeFormator(raw, pins, variables, functions);
 
       const result = await window.build.verify(deviceId, code);
       if (result.status === "success") {
@@ -44,7 +44,7 @@ export default function VerifyButton({ disabled }: { disabled: boolean }) {
             id: "buildVerifyResult",
             type: "success",
             title: result.reason,
-            message: result.output,
+            message: result.output.split("[")[0],
           })
         );
         setTimeout(() => {

@@ -14,7 +14,7 @@ import { useAppSelector, useAppDispatch } from "../../redux/store";
 import { removeToast, addToast } from "../../redux/toast";
 
 export default function UploadButton({ disabled }: { disabled: boolean }) {
-  const { workspace, variables, functions, deviceId, port } =
+  const { workspace, pins, variables, functions, deviceId, port } =
     useAppSelector(selectProject);
   const dispatch = useAppDispatch();
   const { isVerify, isVerifying, isUploading, isUpload, uploadTimestamp } =
@@ -43,7 +43,7 @@ export default function UploadButton({ disabled }: { disabled: boolean }) {
           })
         );
         const raw = ArduinoGenerator.workspaceToCode(workspace);
-        const code = codeFormator(raw, variables, functions);
+        const code = codeFormator(raw, pins, variables, functions);
 
         const result = await window.build.verify(deviceId, code);
         if (result.status === "success") {
@@ -118,7 +118,7 @@ export default function UploadButton({ disabled }: { disabled: boolean }) {
       style="light"
       content={
         uploadTimestamp
-          ? `Last upload on: ${uploadTimestamp.toUTCString()}`
+          ? `Latest upload on: ${uploadTimestamp.toLocaleTimeString()}`
           : "Not uploaded"
       }
     >
