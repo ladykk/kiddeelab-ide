@@ -6,7 +6,15 @@ export function useChatScroll<T>(
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (ref.current) {
-      ref.current.scrollTop = ref.current.scrollHeight;
+      if (
+        ref.current.scrollTop + ref.current.clientHeight + 50 >=
+        ref.current.scrollHeight
+      )
+        ref.current.scrollTop = ref.current.scrollHeight;
+
+      console.log(ref.current.scrollTop);
+      console.log(ref.current.clientHeight);
+      console.log(ref.current.scrollHeight);
     }
   }, [dep]);
   return ref;

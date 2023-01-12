@@ -35,7 +35,7 @@ module.exports.serialOpen = (mainWindow) => async (event, port, baudRate) => {
 module.exports.serialClose = async (event) => {
   try {
     if (serial !== null) {
-      await serial.close();
+      await serial.close((err) => {});
       serial = null;
     }
     return true;
