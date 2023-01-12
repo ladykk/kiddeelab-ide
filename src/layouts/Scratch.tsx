@@ -2,7 +2,7 @@ import { CodeBracketIcon } from "@heroicons/react/24/solid";
 import { Fragment, useState } from "react";
 
 function Scratch() {
-  const [show, setShow] = useState<boolean>(false);
+  const [show, setShow] = useState<boolean>(true);
   return (
     <Fragment>
       <div

@@ -19,7 +19,7 @@ export default function ProjectName() {
         value={projectName}
         onChange={(e) => dispatch(setProjectName(e.target.value))}
         sizing="sm"
-        placeholder="Untitle Project"
+        placeholder="Device Project"
         className="w-[200px]"
       />
       {file && (

@@ -6,8 +6,8 @@ export const defaultOptions: BlocklyOptions = {
   renderer: "zelos",
   theme: "zelos",
   grid: {
-    spacing: 30,
-    length: 5,
+    spacing: 35,
+    length: 2,
     colour: "#d1d5db",
     snap: true,
   },
