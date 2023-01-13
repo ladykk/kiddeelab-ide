@@ -63,6 +63,20 @@
       "contents": [
         {
           "kind": "block",
+          "type": "serial_begin",
+          "inputs": {
+            "output": {
+              "block": {
+                "type": "number_data",
+                "fields": {
+                  "output": 9600
+                }
+              }
+            }
+          }
+        },
+        {
+          "kind": "block",
           "type": "serial_available"
         },
         {
@@ -101,7 +115,36 @@
       "kind": "category",
       "name": "Sensor",
       "colour": "#5CB1D6",
-      "contents": []
+      "contents": [
+        {
+          "kind": "block",
+          "type": "sensor_ultrasonic_read",
+          "inputs": {
+            "trig": { "block": { "type": "pin_esp_32" } },
+            "echo": { "block": { "type": "pin_esp_32" } }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "sensor_dht_declare",
+          "inputs": {
+            "pin": { "block": { "type": "pin_esp_32" } }
+          }
+        },
+        { "kind": "block", "type": "sensor_dht_begin" },
+        {
+          "kind": "block",
+          "type": "sensor_dht_read_humidity"
+        },
+        {
+          "kind": "block",
+          "type": "sensor_dht_read_temperature"
+        },
+        {
+          "kind": "block",
+          "type": "sensor_dht_read_heat_index"
+        }
+      ]
     },
     {
       "kind": "sep"
@@ -117,7 +160,10 @@
           "inputs": {
             "period": {
               "block": {
-                "type": "number_data"
+                "type": "number_data",
+                "fields": {
+                  "output": 1
+                }
               }
             }
           }
@@ -132,7 +178,10 @@
           "inputs": {
             "round": {
               "block": {
-                "type": "number_data"
+                "type": "number_data",
+                "fields": {
+                  "output": 2
+                }
               }
             }
           }
@@ -204,7 +253,8 @@
               }
             }
           }
-        }
+        },
+        { "kind": "block", "type": "number_compare" }
       ]
     },
     {
@@ -223,8 +273,7 @@
         {
           "kind": "block",
           "type": "boolean_op"
-        },
-        { "kind": "block", "type": "number_compare" }
+        }
       ]
     },
     {
@@ -241,7 +290,8 @@
           "kind": "block",
           "type": "char_at"
         },
-        { "kind": "block", "type": "string_length" }
+        { "kind": "block", "type": "string_length" },
+        { "kind": "block", "type": "string_compare" }
       ]
     },
     {
