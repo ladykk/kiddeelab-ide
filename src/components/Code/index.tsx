@@ -36,7 +36,12 @@ export default function Code() {
       </p>
       <SyntaxHighlighrer
         langauge="arduino"
-        customStyle={{ width: "100%", backgroundColor: "rgb(243 244 246)" }}
+        customStyle={{
+          width: "100%",
+          height: "100%",
+          overflow: "auto",
+          backgroundColor: "rgb(243 244 246)",
+        }}
       >
         {currentCode}
       </SyntaxHighlighrer>

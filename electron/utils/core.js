@@ -6,8 +6,13 @@ const ADDITIONAL_URLS = [
   "https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json",
 ];
 
+const LIBS = ["DHT sensor library"];
+
 const ADDITIONAL_URLS_STRING =
   ADDITIONAL_URLS.length > 0 ? `${ADDITIONAL_URLS.join(" ")}` : "";
+
+const LIBS_STRING =
+  LIBS.length > 0 ? LIBS.map((lib) => `"${lib}"`).join(" ") : "";
 
 module.exports.coreIsInstalled = async (event) => {
   try {
@@ -31,9 +36,16 @@ module.exports.coreUpdateIndex = async (event) => {
       if (addBoardList.stderr) return false;
     }
 
-    const { stdout, stderr } = await exec(`${CORE} core update-index`);
-    if (stderr) return false;
-    else return true;
+    const updateIndex = await exec(`${CORE} core update-index`);
+    if (updateIndex.stderr) return false;
+
+    if (LIBS_STRING.length > 0) {
+      const { stdout, stderr } = await exec(
+        `${CORE} lib install ${LIBS_STRING}`
+      );
+      if (stderr) return false;
+    }
+    return true;
   } catch (e) {
     return false;
   }

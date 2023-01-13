@@ -145,7 +145,7 @@ ArduinoGenerator["serial_println"] = function (block: Block) {
 ArduinoGenerator["arduino_structure"] = function (block: Block) {
   const setup: string = ArduinoGenerator.statementToCode(block, "setup");
   const loop: string = ArduinoGenerator.statementToCode(block, "loop");
-  return `-> structure\nvoid setup() {\n${setup}}\n\nvoid loop() {\n${loop}}\n`;
+  return `-> structure\nvoid setup() {\n${setup}}\n\nvoid loop() {\n${loop}}\n-> end structure`;
 };
 
 ArduinoGenerator["control_wait"] = function (block: Block) {
@@ -494,24 +494,74 @@ ArduinoGenerator["function_void"] = function (block: Block) {
   return "";
 };
 
+ArduinoGenerator["sensor_ultrasonic_read"] = function (block: Block) {
+  const trig: string = ArduinoGenerator.valueToCode(
+    block,
+    "trig",
+    ORDER.ATOMIC
+  );
+  const echo: string = ArduinoGenerator.valueToCode(
+    block,
+    "echo",
+    ORDER.ATOMIC
+  );
+
+  return [`readUltrasonic(${trig}, ${echo})`, ORDER.ATOMIC];
+};
+
+ArduinoGenerator["sensor_dht_declare"] = function (block: Block) {
+  const pin: string = ArduinoGenerator.valueToCode(block, "pin", ORDER.ATOMIC);
+  return `-> declare dht: DHT dht(${pin}, DHT22);\n`;
+};
+
+ArduinoGenerator["sensor_dht_begin"] = function (block: Block) {
+  return `dht.begin();\n`;
+};
+
+ArduinoGenerator["sensor_dht_read_humidity"] = function (block: Block) {
+  return [`dht.readHumidity()`, ORDER.ATOMIC];
+};
+
+ArduinoGenerator["sensor_dht_read_temperature"] = function (block: Block) {
+  const unit: string = block.getFieldValue("unit");
+  return [`dht.readTemperature(${unit === "F" ? "true" : ""})`, ORDER.ATOMIC];
+};
+
+ArduinoGenerator["sensor_dht_read_heat_index"] = function (block: Block) {
+  return [
+    `dht.computeHeatIndex(dht.readTemperature(), dht.readHumidity(), false)`,
+    ORDER.ATOMIC,
+  ];
+};
+
 export const codeFormator = (
   raw: string,
   pins: Array<Pin>,
   variables: Array<Variable>,
   functions: Array<Function>
 ) => {
-  const split = raw.split("-> ");
+  const split = raw.split("-> ").map((s) => s.trim());
 
   // Declare pins
-  const declare_pins = pins.map((p) => `#define ${p.name} ${p.pin}`);
+  const declare_pins = new Set();
+  pins
+    .map((p) => `#define ${p.name} ${p.pin}`)
+    .forEach((p) => declare_pins.add(p));
 
   // Declare variables
-  const declare_variables = variables.map(
-    (v) =>
-      `${
-        v.type === "Logic" ? "bool" : v.type === "String" ? "String" : "double"
-      }${v.size ? `[${v.size}]` : ""} ${v.name};`
-  );
+  const declare_variables = new Set();
+  variables
+    .map(
+      (v) =>
+        `${
+          v.type === "Logic"
+            ? "bool"
+            : v.type === "String"
+            ? "String"
+            : "double"
+        }${v.size ? `[${v.size}]` : ""} ${v.name};`
+    )
+    .forEach((v) => declare_variables.add(v));
 
   // Declare functions
   const split_functions = split.filter((s) => s.startsWith("declare function"));
@@ -544,17 +594,44 @@ export const codeFormator = (
     return format;
   });
 
+  // Arduino Structure
   const structure =
     split.find((s) => s.startsWith("structure"))?.substring(10) ?? "";
 
-  const merge = `${
-    declare_pins.join("\n") + (declare_pins.length > 0 ? "\n\n" : "")
+  // Declare Dependencies
+  const module_dependencies = new Set();
+  const func_dependencies = new Set();
+
+  // Retrives Dependencies
+  raw.split("\n").forEach((line) => {
+    const trim_line = line.trim();
+    console.log(trim_line);
+    if (trim_line.includes("readUltrasonic("))
+      func_dependencies.add(
+        "double readUltrasonic(int trigPin, int echoPin) {\n  pinMode(trigPin, OUTPUT);\n  digitalWrite(trigPin, LOW);\n  delayMicroseconds(2);\n  digitalWrite(trigPin, HIGH);\n  delayMicroseconds(5);\n  digitalWrite(trigPin, LOW);\n  pinMode(echoPin, INPUT);\n  return pulseIn(echoPin, HIGH) / 29.0 / 2.0;\n}"
+      );
+    else if (trim_line.includes("dht.")) {
+      const declare = split.find((s) => s.startsWith("declare dht:"));
+      if (!declare) return;
+      module_dependencies.add("#include <DHT.h>");
+      declare_variables.add(declare.substring(13).replaceAll("\n", ""));
+    }
+  });
+
+  return `${
+    Array.from(module_dependencies).join("\n") +
+    (module_dependencies.size > 0 ? "\n\n" : "")
   }${
-    declare_variables.join("\n") + (declare_variables.length > 0 ? "\n\n" : "")
+    Array.from(declare_pins).join("\n") + (declare_pins.size > 0 ? "\n\n" : "")
   }${
-    declare_functions.join("\n") + (declare_functions.length > 0 ? "\n" : "")
+    Array.from(declare_variables).join("\n") +
+    (declare_variables.size > 0 ? "\n\n" : "")
+  }${
+    declare_functions.join("\n") + (declare_functions.length > 0 ? "\n\n" : "")
+  }${
+    Array.from(func_dependencies).join("\n") +
+    (func_dependencies.size > 0 ? "\n" : "")
   }${structure}`;
-  return merge;
 };
 
 export default ArduinoGenerator;

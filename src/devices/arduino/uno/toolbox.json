@@ -115,7 +115,36 @@
       "kind": "category",
       "name": "Sensor",
       "colour": "#5CB1D6",
-      "contents": []
+      "contents": [
+        {
+          "kind": "block",
+          "type": "sensor_ultrasonic_read",
+          "inputs": {
+            "trig": { "block": { "type": "pin_arduino_uno" } },
+            "echo": { "block": { "type": "pin_arduino_uno" } }
+          }
+        },
+        {
+          "kind": "block",
+          "type": "sensor_dht_declare",
+          "inputs": {
+            "pin": { "block": { "type": "pin_arduino_uno" } }
+          }
+        },
+        { "kind": "block", "type": "sensor_dht_begin" },
+        {
+          "kind": "block",
+          "type": "sensor_dht_read_humidity"
+        },
+        {
+          "kind": "block",
+          "type": "sensor_dht_read_temperature"
+        },
+        {
+          "kind": "block",
+          "type": "sensor_dht_read_heat_index"
+        }
+      ]
     },
     {
       "kind": "sep"

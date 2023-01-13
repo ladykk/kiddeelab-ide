@@ -1234,5 +1234,88 @@
     "colour": "#575E75",
     "tooltip": "Void return type.",
     "helpUrl": ""
+  },
+  {
+    "type": "sensor_ultrasonic_read",
+    "message0": "read distance trig: %1 echo: %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "trig",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "echo",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Number",
+    "colour": "#5CB1D6",
+    "tooltip": "Read distance value from the ultrasonic sensor.",
+    "helpUrl": ""
+  },
+  {
+    "type": "sensor_dht_declare",
+    "message0": "declare temp module %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "pin",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "colour": "#5CB1D6",
+    "tooltip": "Declare temperature module.",
+    "helpUrl": ""
+  },
+  {
+    "type": "sensor_dht_begin",
+    "message0": "begin temp module",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5CB1D6",
+    "tooltip": "Begin temperature module.",
+    "helpUrl": ""
+  },
+  {
+    "type": "sensor_dht_read_humidity",
+    "message0": "read humidity",
+    "inputsInline": true,
+    "output": "Number",
+    "colour": "#5CB1D6",
+    "tooltip": "Read humidity from the temperature module.",
+    "helpUrl": ""
+  },
+  {
+    "type": "sensor_dht_read_temperature",
+    "message0": "read temperature in %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "unit",
+        "options": [
+          ["Celsius", "C"],
+          ["Fahrenheit", "F"]
+        ]
+      }
+    ],
+    "inputsInline": true,
+    "output": "Number",
+    "colour": "#5CB1D6",
+    "tooltip": "Read temperature from the temperature module.",
+    "helpUrl": ""
+  },
+  {
+    "type": "sensor_dht_read_heat_index",
+    "message0": "read heat index",
+    "inputsInline": true,
+    "output": "Number",
+    "colour": "#5CB1D6",
+    "tooltip": "Read heat index from the temperature module.",
+    "helpUrl": ""
   }
 ]
