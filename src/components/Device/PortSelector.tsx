@@ -4,7 +4,7 @@ import { selectProject, setPort } from "../../redux/project";
 import { useAppSelector, useAppDispatch } from "../../redux/store";
 import { DeviceInfo } from "../../types/device";
 
-export default function () {
+export default function PortSelector() {
   const { deviceId, port } = useAppSelector(selectProject);
   const [show, setShow] = useState<boolean>(false);
   const [devices, setDevices] = useState<Array<DeviceInfo>>([]);

@@ -10,6 +10,7 @@ export type Device = {
   pins: Array<string>;
   bootRequired: boolean;
   pic?: any;
+  pinout?: any;
   toolbox: ToolboxDefinition;
 };
 

@@ -3,6 +3,7 @@ import { defineBlocksWithJsonArray, Block } from "blockly";
 import blocks from "./blocks.json";
 import toolbox from "./toolbox.json";
 import pic from "./pic.png";
+import pinout from "./pinout.png";
 import ArduinoGenerator, { ORDER } from "../../../blocks/arduino";
 
 defineBlocksWithJsonArray(blocks);
@@ -40,5 +41,6 @@ export default {
     "A5",
   ],
   pic,
+  pinout,
   toolbox,
 } as Device;
