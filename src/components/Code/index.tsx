@@ -3,17 +3,20 @@ import ArduinoGenerator, { codeFormator } from "../../blocks/arduino";
 import { selectProject, setChange } from "../../redux/project";
 import { useAppSelector, useAppDispatch } from "../../redux/store";
 import SyntaxHighlighrer from "react-syntax-highlighter";
+import deviceLists from "../../devices";
 
 export default function Code() {
   const [currentCode, setCode] = useState<string>("");
-  const { workspace, pins, variables, functions, showCode } =
+  const { workspace, pins, variables, functions, showCode, deviceId } =
     useAppSelector(selectProject);
   const dispatch = useAppDispatch();
 
   const onWorkspaceChange = () => {
-    if (workspace) {
+    if (workspace && deviceId) {
       const raw = ArduinoGenerator.workspaceToCode(workspace);
-      setCode(codeFormator(raw, pins, variables, functions));
+      setCode(
+        codeFormator(raw, pins, variables, functions, deviceLists[deviceId])
+      );
       dispatch(setChange(true));
     }
   };

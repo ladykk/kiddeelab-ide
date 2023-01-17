@@ -45,7 +45,13 @@ export default function UploadButton({ disabled }: { disabled: boolean }) {
           })
         );
         const raw = ArduinoGenerator.workspaceToCode(workspace);
-        const code = codeFormator(raw, pins, variables, functions);
+        const code = codeFormator(
+          raw,
+          pins,
+          variables,
+          functions,
+          deviceLists[deviceId]
+        );
 
         const result = await window.build.verify(deviceId, code);
         if (result.status === "success") {

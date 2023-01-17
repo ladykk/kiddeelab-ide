@@ -30,4 +30,16 @@ module.exports = {
     //   name: "@electron-forge/maker-zip",
     // },
   ],
+  publishers: [
+    {
+      name: "@electron-forge/publisher-github",
+      config: {
+        repository: {
+          owner: "ladykk",
+          name: "kiddeelab-ide",
+        },
+        prerelease: true,
+      },
+    },
+  ],
 };

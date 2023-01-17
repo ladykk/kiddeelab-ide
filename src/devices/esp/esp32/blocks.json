@@ -55,5 +55,15 @@
     "colour": "#FFBF00",
     "tooltip": "Pin on ESP32.",
     "helpUrl": "ESP32"
+  },
+  {
+    "type": "wifi_digital_status",
+    "message0": "setup digital status on WiFi",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#0FBD8C",
+    "tooltip": "Setup digital status on WiFi.",
+    "helpUrl": ""
   }
 ]

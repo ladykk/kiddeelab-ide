@@ -2,7 +2,7 @@ import { CodeBracketIcon } from "@heroicons/react/24/solid";
 import { Fragment, useState } from "react";
 
 function Scratch() {
-  const [show, setShow] = useState<boolean>(false);
+  const [show, setShow] = useState<boolean>(true);
   return (
     <Fragment>
       <div
@@ -18,7 +18,7 @@ function Scratch() {
         />
       </div>
       <iframe
-        src="/scratch/index.html"
+        src="/scratch.html"
         className={`w-screen h-screen top-0 left-0 right-0 bottom-0 bg-white z-10 ${
           show ? "fixed" : "hidden"
         }`}

@@ -2,12 +2,14 @@ import { ChatBubbleOvalLeftIcon } from "@heroicons/react/24/solid";
 import { Button, Modal, TextInput } from "flowbite-react";
 import { useState, useEffect, Fragment } from "react";
 import { useChatScroll } from "../../hooks/chat";
+import { selectCore } from "../../redux/core";
 import { selectProject } from "../../redux/project";
 import { useAppSelector } from "../../redux/store";
 import { SerialData } from "../../types/device";
 
 export default function SerialMonitor() {
   const { deviceId, port } = useAppSelector(selectProject);
+  const { isUploading } = useAppSelector(selectCore);
   const [messages, setMessages] = useState<Array<SerialData>>([]);
   const [input, setInput] = useState<string>("");
   const [baudRate, setBaudRate] = useState<number>(9600);
@@ -44,10 +46,16 @@ export default function SerialMonitor() {
         await window.serial.open(port, baudRate);
       } else {
         console.log(await window.serial.close());
-        setMessages([]);
       }
     })();
   }, [show, port, baudRate]);
+
+  useEffect(() => {
+    if (isUploading) {
+      setShow(false);
+      setMessages([]);
+    }
+  }, [isUploading]);
 
   const sendMessage = async () => {
     if (isOpen) {
@@ -65,7 +73,7 @@ export default function SerialMonitor() {
     }
   };
 
-  const disabled = deviceId === null || !port;
+  const disabled = deviceId === null || !port || isUploading;
 
   return (
     <Fragment>

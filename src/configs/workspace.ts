@@ -22,7 +22,7 @@ export const defaultOptions: BlocklyOptions = {
   zoom: {
     wheel: true,
     controls: true,
-    startScale: 0.8,
+    startScale: 0.7,
     maxScale: 2,
     minScale: 0.5,
     scaleSpeed: 1.2,

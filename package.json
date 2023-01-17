@@ -1,13 +1,10 @@
 {
-  "name": "kiddeelab-ide",
-  "version": "0.0.3-alpha",
+  "name": "KiddeeLab IDE",
+  "version": "0.0.4-alpha",
   "description": "An Block Programing IDE for Microcontrollers and Robots.",
   "main": "main.js",
   "author": "Rattapon Apiratjit (Kiddee Lab)",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ladykk/kiddeelab-ide.git"
-  },
+  "repository": "ladykk/kiddeelab-ide",
   "private": true,
   "type": "commonjs",
   "scripts": {
@@ -23,6 +20,7 @@
     "@blockly/block-plus-minus": "^4.0.3",
     "@blockly/continuous-toolbox": "^3.0.3",
     "@electron-forge/maker-dmg": "^6.0.4",
+    "@electron-forge/publisher-github": "^6.0.4",
     "@electron/universal": "^1.3.4",
     "@heroicons/react": "^2.0.13",
     "@reduxjs/toolkit": "^1.9.1",

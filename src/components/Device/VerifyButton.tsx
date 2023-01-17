@@ -1,11 +1,12 @@
 import { CheckIcon } from "@heroicons/react/24/solid";
 import { Button, Spinner } from "flowbite-react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import ArduinoGenerator, { codeFormator } from "../../blocks/arduino";
 import { selectCore, setVerify, setVerifying } from "../../redux/core";
 import { selectProject } from "../../redux/project";
 import { useAppSelector, useAppDispatch } from "../../redux/store";
 import { removeToast, addToast } from "../../redux/toast";
+import deviceLists from "../../devices";
 
 export default function VerifyButton({ disabled }: { disabled: boolean }) {
   const { workspace, pins, variables, functions, deviceId } =
@@ -35,7 +36,13 @@ export default function VerifyButton({ disabled }: { disabled: boolean }) {
         })
       );
       const raw = ArduinoGenerator.workspaceToCode(workspace);
-      const code = codeFormator(raw, pins, variables, functions);
+      const code = codeFormator(
+        raw,
+        pins,
+        variables,
+        functions,
+        deviceLists[deviceId]
+      );
 
       const result = await window.build.verify(deviceId, code);
       if (result.status === "success") {

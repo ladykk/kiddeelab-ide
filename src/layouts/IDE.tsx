@@ -12,7 +12,10 @@ export default function IDE() {
     <div className="w-screen h-screen max-h-[100vh] max-w-[100vw] bg-gray-50 flex">
       <div className="w-full h-full flex flex-col">
         <MenuBar />
-        <div className="w-full h-full flex">
+        <div
+          className="w-full h-full flex"
+          style={{ maxHeight: "calc(100% - 56px)" }}
+        >
           <div className="max-w-[450px] w-full border-r flex flex-col">
             <Device />
             <DeviceManage />

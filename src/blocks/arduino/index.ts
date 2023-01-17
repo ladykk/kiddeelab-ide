@@ -1,5 +1,6 @@
 import { defineBlocksWithJsonArray, CodeGenerator, Block } from "blockly";
 import { Variable, Function, Pin } from "../../types/code";
+import { Device, DeviceIds } from "../../types/device";
 import blocks from "./block.json";
 
 defineBlocksWithJsonArray(blocks);
@@ -534,11 +535,18 @@ ArduinoGenerator["sensor_dht_read_heat_index"] = function (block: Block) {
   ];
 };
 
+ArduinoGenerator["wifi_begin"] = function (block: Block) {
+  const ssid: string = block.getFieldValue("ssid");
+  const password: string = block.getFieldValue("password");
+  return `WiFi.begin("${ssid}", "${password}");\nSerial.print("Connecting to WiFi");\nwhile (WiFi.status() != WL_CONNECTED) {\n  delay(1000);\n  Serial.print(".");\n}\nSerial.println();\nSerial.print("Connected to the WiFi network with IP Address: ");\nSerial.println(WiFi.localIP());\n`;
+};
+
 export const codeFormator = (
   raw: string,
   pins: Array<Pin>,
   variables: Array<Variable>,
-  functions: Array<Function>
+  functions: Array<Function>,
+  device: Device
 ) => {
   const split = raw.split("-> ").map((s) => s.trim());
 
@@ -615,6 +623,22 @@ export const codeFormator = (
       if (!declare) return;
       module_dependencies.add("#include <DHT.h>");
       declare_variables.add(declare.substring(13).replaceAll("\n", ""));
+    } else if (trim_line.includes("WiFi.")) {
+      module_dependencies.add("#include <WiFi.h>");
+    } else if (trim_line.includes("server.")) {
+      if (device.id === "esp32:esp32:esp32") {
+        const code = device.code;
+        if (!code) return;
+        code["server."].module_dependencies.forEach((module) =>
+          module_dependencies.add(module)
+        );
+        code["server."].declare_variables.forEach((variable) =>
+          declare_variables.add(variable)
+        );
+        code["server."].func_dependencies.forEach((func) =>
+          func_dependencies.add(func)
+        );
+      }
     }
   });
 

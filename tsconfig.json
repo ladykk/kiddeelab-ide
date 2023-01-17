@@ -17,6 +17,11 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "public/scratch"],
+  "include": [
+    "src",
+    "public/scratch",
+    "public/static/scratch/assets",
+    "public/assets"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
