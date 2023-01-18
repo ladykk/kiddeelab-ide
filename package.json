@@ -1,6 +1,6 @@
 {
   "name": "KiddeeLab IDE",
-  "version": "0.0.4-alpha",
+  "version": "0.0.3-alpha",
   "description": "An Block Programing IDE for Microcontrollers and Robots.",
   "main": "main.js",
   "author": "Rattapon Apiratjit (Kiddee Lab)",
