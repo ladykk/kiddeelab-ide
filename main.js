@@ -1,5 +1,5 @@
 const path = require("path");
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const { fileOpen, fileSave } = require("./electron/utils/file");
 const { buildVerify, buildUpload } = require("./electron/utils/build");
 const { deviceFetch } = require("./electron/utils/device");
@@ -55,6 +55,24 @@ const createWindow = async () => {
   else {
     mainWindow.loadURL("http://localhost:5173/");
   }
+
+  mainWindow.on("close", (e) => {
+    e.preventDefault();
+    dialog
+      .showMessageBox({
+        type: "info",
+        buttons: ["Cancel", "Exit"],
+        cancelId: 1,
+        defaultId: 0,
+        title: "Close KiddeeLab IDE",
+        detail: "Make sure you save all file before exit.",
+      })
+      .then(({ response, checkboxChecked }) => {
+        if (response) {
+          mainWindow.destroy();
+        }
+      });
+  });
 
   return mainWindow;
 };
