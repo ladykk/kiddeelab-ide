@@ -1,0 +1,95 @@
+[
+  {
+    "type": "boolean_data",
+
+    "message0": "%1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "output",
+        "options": [
+          ["true", "true"],
+          ["false", "false"]
+        ]
+      }
+    ],
+    "inputsInline": true,
+    "output": "Boolean",
+    "colour": "#9966FF",
+    "tooltip": "Boolean.",
+    "helpUrl": ""
+  },
+
+  {
+    "type": "boolean_op",
+    "message0": "%1 %2 %3 %4",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "base",
+        "check": "Boolean"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "operator",
+        "options": [
+          ["and", "&&"],
+          ["or", "||"]
+        ]
+      },
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_value",
+        "name": "comparator",
+        "check": "Boolean"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Boolean",
+    "colour": "#9966FF",
+    "tooltip": "Boolean operation.",
+    "helpUrl": ""
+  },
+  {
+    "type": "boolean_not",
+    "message0": "not %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "base",
+        "check": "Boolean"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Boolean",
+    "colour": "#9966FF",
+    "tooltip": "Invert boolean value.",
+    "helpUrl": ""
+  },
+  {
+    "type": "boolean_compare",
+    "message0": "%1 is %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "base",
+        "check": "Boolean"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "value",
+        "options": [
+          ["True", "true"],
+          ["False", "false"]
+        ]
+      }
+    ],
+    "inputsInline": true,
+    "output": "Boolean",
+    "colour": "#9966FF",
+    "tooltip": "Boolean comparation.",
+    "helpUrl": ""
+  }
+]

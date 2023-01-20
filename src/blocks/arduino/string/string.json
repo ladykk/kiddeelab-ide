@@ -1,0 +1,101 @@
+[
+  {
+    "type": "string_data",
+    "message0": "\" %1 \"",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "output",
+        "text": ""
+      }
+    ],
+    "output": "String",
+    "colour": "#FF6680",
+    "tooltip": "String.",
+    "helpUrl": ""
+  },
+  {
+    "type": "string_join",
+    "message0": "join %1 with %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "base",
+        "check": ["String", "Number"]
+      },
+      {
+        "type": "input_value",
+        "name": "add",
+        "check": ["String", "Number"]
+      }
+    ],
+    "inputsInline": true,
+    "output": "String",
+    "colour": "#FF6680",
+    "tooltip": "Join two data to string.",
+    "helpUrl": ""
+  },
+  {
+    "type": "char_at",
+    "message0": "character at %1 %2 of %3",
+    "args0": [
+      {
+        "type": "field_number",
+        "name": "index",
+        "value": 0,
+        "min": 0,
+        "precision": 1
+      },
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_value",
+        "name": "base",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "output": "String",
+    "colour": "#FF6680",
+    "tooltip": "Return character at the index in the string.",
+    "helpUrl": ""
+  },
+  {
+    "type": "string_length",
+    "message0": "length of %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "base",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Number",
+    "colour": "#FF6680",
+    "tooltip": "Return length of the string.",
+    "helpUrl": ""
+  },
+  {
+    "type": "string_compare",
+    "message0": "%1 is equals %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "base",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "comparator",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Boolean",
+    "colour": "#FF6680",
+    "tooltip": "String comparation.",
+    "helpUrl": ""
+  }
+]

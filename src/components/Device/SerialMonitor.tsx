@@ -45,7 +45,7 @@ export default function SerialMonitor() {
       if (show && port && baudRate) {
         await window.serial.open(port, baudRate);
       } else {
-        console.log(await window.serial.close());
+        await window.serial.close();
       }
     })();
   }, [show, port, baudRate]);
@@ -96,8 +96,8 @@ export default function SerialMonitor() {
               .map((m) => `${new TextDecoder("utf-8").decode(m.message)}`)
               .join("")
               .split("\n")
-              .map((m) => (
-                <p>{m}</p>
+              .map((m, index) => (
+                <p key={index}>{m}</p>
               ))}
           </div>
         </Modal.Body>

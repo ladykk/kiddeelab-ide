@@ -22,8 +22,9 @@ export default function CodeManage() {
   return (
     <Fragment>
       <div className="bg-gray-50 border-b flex items-center h-12">
-        {CODE_MENUS.map((m) => (
+        {CODE_MENUS.map((m, index) => (
           <p
+            key={index}
             className={`h-full font-semibold  px-5 py-2 pt-3 hover:cursor-pointer hover:bg-gray-100 ${
               m === menu
                 ? "border-b-2 border-blue-600 text-blue-600"

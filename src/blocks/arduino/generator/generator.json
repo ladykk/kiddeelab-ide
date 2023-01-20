@@ -1,0 +1,402 @@
+[
+  {
+    "type": "variable_number_get",
+    "message0": "get %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "variable",
+        "text": ""
+      }
+    ],
+    "inputsInline": true,
+    "output": "Number",
+    "colour": "#59C059",
+    "tooltip": "Get variable value.",
+    "helpUrl": ""
+  },
+  {
+    "type": "variable_boolean_get",
+    "message0": "get %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "variable",
+        "text": ""
+      }
+    ],
+    "inputsInline": true,
+    "output": "Boolean",
+    "colour": "#9966FF",
+    "tooltip": "Get variable value.",
+    "helpUrl": ""
+  },
+  {
+    "type": "variable_string_get",
+    "message0": "get %1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "variable",
+        "text": ""
+      }
+    ],
+    "inputsInline": true,
+    "output": "String",
+    "colour": "#FF6680",
+    "tooltip": "Get variable value.",
+    "helpUrl": ""
+  },
+  {
+    "type": "variable_number_set",
+    "message0": "set %1 to %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "variable",
+        "text": ""
+      },
+      {
+        "type": "input_value",
+        "name": "value",
+        "check": "Number"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#59C059",
+    "tooltip": "Set variable value.",
+    "helpUrl": ""
+  },
+  {
+    "type": "variable_boolean_set",
+    "message0": "set %1 to %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "variable",
+        "text": ""
+      },
+      {
+        "type": "input_value",
+        "name": "value",
+        "check": "Boolean"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9966FF",
+    "tooltip": "Set variable value.",
+    "helpUrl": ""
+  },
+  {
+    "type": "variable_string_set",
+    "message0": "set %1 to %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "variable",
+        "text": ""
+      },
+      {
+        "type": "input_value",
+        "name": "value",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF6680",
+    "tooltip": "Set variable value.",
+    "helpUrl": ""
+  },
+  {
+    "type": "variable_number_op",
+    "message0": "%1 %2 by %3",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "op",
+        "options": [
+          ["increment", "+"],
+          ["decrement", "-"]
+        ]
+      },
+      {
+        "type": "field_input",
+        "name": "variable",
+        "text": ""
+      },
+      {
+        "type": "input_value",
+        "name": "value",
+        "check": "Number"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#59C059",
+    "tooltip": "Set variable value.",
+    "helpUrl": ""
+  },
+  {
+    "type": "variable_number_get_array",
+    "message0": "get %1 at %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "variable",
+        "text": ""
+      },
+      {
+        "type": "input_value",
+        "name": "index",
+        "check": "Number"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Number",
+    "colour": "#59C059",
+    "tooltip": "Get variable value at specific index.",
+    "helpUrl": ""
+  },
+  {
+    "type": "variable_boolean_get_array",
+    "message0": "get %1 at %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "variable",
+        "text": ""
+      },
+      {
+        "type": "input_value",
+        "name": "index",
+        "check": "Number"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Boolean",
+    "colour": "#9966FF",
+    "tooltip": "Get variable value at specific index.",
+    "helpUrl": ""
+  },
+  {
+    "type": "variable_string_get_array",
+    "message0": "get %1 at %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "variable",
+        "text": ""
+      },
+      {
+        "type": "input_value",
+        "name": "index",
+        "check": "Number"
+      }
+    ],
+    "inputsInline": true,
+    "output": "String",
+    "colour": "#FF6680",
+    "tooltip": "Get variable value at specific index.",
+    "helpUrl": ""
+  },
+  {
+    "type": "variable_string_set_array",
+    "message0": "set %1 at %2 to %3",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "variable",
+        "text": ""
+      },
+      {
+        "type": "input_value",
+        "name": "index",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "value",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FF6680",
+    "tooltip": "Set variable value at specific index.",
+    "helpUrl": ""
+  },
+  {
+    "type": "variable_boolean_get_array",
+    "message0": "get %1 at %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "variable",
+        "text": ""
+      },
+      {
+        "type": "input_value",
+        "name": "index",
+        "check": "Number"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Boolean",
+    "colour": "#9966FF",
+    "tooltip": "Get variable value at specific index.",
+    "helpUrl": ""
+  },
+  {
+    "type": "variable_boolean_set_array",
+    "message0": "set %1 at %2 to %3",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "variable",
+        "text": ""
+      },
+      {
+        "type": "input_value",
+        "name": "index",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "value",
+        "check": "Boolean"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#9966FF",
+    "tooltip": "Set variable value at specific index.",
+    "helpUrl": ""
+  },
+  {
+    "type": "variable_number_get_array",
+    "message0": "get %1 at %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "variable",
+        "text": ""
+      },
+      {
+        "type": "input_value",
+        "name": "index",
+        "check": "Number"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Number",
+    "colour": "#59C059",
+    "tooltip": "Get variable value at specific index.",
+    "helpUrl": ""
+  },
+  {
+    "type": "variable_number_set_array",
+    "message0": "set %1 at %2 to %3",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "variable",
+        "text": ""
+      },
+      {
+        "type": "input_value",
+        "name": "index",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "value",
+        "check": "Number"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#59C059",
+    "tooltip": "Set variable value at specific index.",
+    "helpUrl": ""
+  },
+  {
+    "type": "variable_number_op_array",
+    "message0": "%1 %2 at %3 by %4",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "op",
+        "options": [
+          ["increment", "+"],
+          ["decrement", "-"]
+        ]
+      },
+      {
+        "type": "field_input",
+        "name": "variable",
+        "text": ""
+      },
+      {
+        "type": "input_value",
+        "name": "index",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "value",
+        "check": "Number"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#59C059",
+    "tooltip": "Set variable value.",
+    "helpUrl": ""
+  },
+  {
+    "type": "function_declare",
+    "message0": "declare function %1 %2 do %3 return %4",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "name",
+        "text": ""
+      },
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_statement",
+        "name": "statements"
+      },
+      {
+        "type": "input_value",
+        "name": "return"
+      }
+    ],
+    "inputsInline": true,
+    "colour": "#FF8C1A",
+    "tooltip": "Declare function to execute set of statements.",
+    "helpUrl": ""
+  },
+  {
+    "type": "function_void",
+    "message0": "none",
+    "inputsInline": true,
+    "output": null,
+    "colour": "#575E75",
+    "tooltip": "Void return type.",
+    "helpUrl": ""
+  }
+]

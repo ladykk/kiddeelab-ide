@@ -1,7 +1,8 @@
-import { Blocks, Block, FieldTextInput } from "blockly";
-import { Variable, Function, Pin } from "../types/code";
+import { Blocks, FieldTextInput, Block } from "blockly";
+import { Pin, Variable, Function } from "../types/code";
 import "./arduino";
-import ArduinoGenerator, { ORDER } from "./arduino";
+import ArduinoGenerator from "./arduino";
+import { ORDER } from "./arduino/generator";
 
 export const COLOR = {
   MOTION: "#4C97FF",

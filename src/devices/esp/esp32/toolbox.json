@@ -133,7 +133,7 @@
       "contents": [
         {
           "kind": "block",
-          "type": "sensor_ultrasonic_read",
+          "type": "component_ultrasonic_read",
           "inputs": {
             "trig": { "block": { "type": "pin_esp_32" } },
             "echo": { "block": { "type": "pin_esp_32" } }
@@ -141,23 +141,23 @@
         },
         {
           "kind": "block",
-          "type": "sensor_dht_declare",
+          "type": "component_dht_declare",
           "inputs": {
             "pin": { "block": { "type": "pin_esp_32" } }
           }
         },
-        { "kind": "block", "type": "sensor_dht_begin" },
+        { "kind": "block", "type": "component_dht_begin" },
         {
           "kind": "block",
-          "type": "sensor_dht_read_humidity"
+          "type": "component_dht_read_humidity"
         },
         {
           "kind": "block",
-          "type": "sensor_dht_read_temperature"
+          "type": "component_dht_read_temperature"
         },
         {
           "kind": "block",
-          "type": "sensor_dht_read_heat_index"
+          "type": "component_dht_read_heat_index"
         }
       ]
     },

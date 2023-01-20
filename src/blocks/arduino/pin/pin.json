@@ -1,0 +1,231 @@
+[
+  {
+    "type": "arduino_structure",
+    "message0": "when Arduino start %1 %2 loop forever %3 %4",
+    "args0": [
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_statement",
+        "name": "setup"
+      },
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_statement",
+        "name": "loop"
+      }
+    ],
+    "colour": "#FFBF00",
+    "tooltip": "Initialize Arduino structure.",
+    "helpUrl": ""
+  },
+  {
+    "type": "pin_mode",
+    "message0": "set  %1 to be %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "pin",
+        "check": "String"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "mode",
+        "options": [
+          ["INPUT", "INPUT"],
+          ["OUTPUT", "OUTPUT"]
+        ]
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#4C97FF",
+    "tooltip": "Configure the pin to be input or output.",
+    "helpUrl": ""
+  },
+  {
+    "type": "pin_define",
+    "message0": "%1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "pin",
+        "text": ""
+      }
+    ],
+    "inputsInline": true,
+    "output": "String",
+    "colour": "#FFBF00",
+    "tooltip": "Named Pin.",
+    "helpUrl": ""
+  },
+  {
+    "type": "pin_digital_read",
+    "message0": "read digital input of %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "pin",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Boolean",
+    "colour": "#4C97FF",
+    "tooltip": "Read digital input on specific pin",
+    "helpUrl": ""
+  },
+  {
+    "type": "pin_digital_write",
+    "message0": "set %1 to %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "pin",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "output",
+        "check": "Boolean"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#4C97FF",
+    "tooltip": "Write digital output on specific pin.",
+    "helpUrl": ""
+  },
+  {
+    "type": "pin_digital_output",
+    "message0": "digital output %1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "output",
+        "options": [
+          ["HIGH", "true"],
+          ["LOW", "false"]
+        ]
+      }
+    ],
+    "inputsInline": true,
+    "output": "Boolean",
+    "colour": "#4C97FF",
+    "tooltip": "Digital output.",
+    "helpUrl": ""
+  },
+  {
+    "type": "pin_analog_read",
+    "message0": "read analog input on %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "pin",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Number",
+    "colour": "#4C97FF",
+    "tooltip": "Read analog input on specific pin.",
+    "helpUrl": ""
+  },
+  {
+    "type": "pin_analog_write",
+    "message0": "set %1 to %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "pin",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "output",
+        "check": "Number"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#4C97FF",
+    "tooltip": "Write analog output on specific pin.",
+    "helpUrl": ""
+  },
+  {
+    "type": "pin_pwm_output",
+    "message0": "pwm output %1",
+    "args0": [
+      {
+        "type": "field_number",
+        "name": "output",
+        "value": 0,
+        "min": 0,
+        "max": 255,
+        "precision": 1
+      }
+    ],
+    "inputsInline": true,
+    "output": "Number",
+    "colour": "#4C97FF",
+    "tooltip": "Analog output.",
+    "helpUrl": ""
+  },
+  {
+    "type": "pin_detach_interrupt",
+    "message0": "detach interrupt of %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "pin",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 230,
+    "tooltip": "Detach interrupt on specific pin.",
+    "helpUrl": ""
+  },
+  {
+    "type": "pin_attach_interrupt",
+    "message0": "attach interrupt on %1 with mode %2 %3 executes %4",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "pin",
+        "check": "String"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "mode",
+        "options": [
+          ["LOW", "LOW"],
+          ["CHANGE", "CHANGE"],
+          ["RISING", "RISING"],
+          ["FALLING", "FALLING"]
+        ]
+      },
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_statement",
+        "name": "isr"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 230,
+    "tooltip": "Attach interrupt on specific pin to execute statements.",
+    "helpUrl": ""
+  }
+]

@@ -1,0 +1,222 @@
+[
+  {
+    "type": "control_wait",
+    "message0": "wait for %1 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "period",
+        "check": "Number"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "unit",
+        "options": [
+          ["seconds", "seconds"],
+          ["milliseconds", "milliseconds"]
+        ]
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFAB19",
+    "tooltip": "Wait for specific period.",
+    "helpUrl": ""
+  },
+  {
+    "type": "control_repeat",
+    "message0": "repeat for %1 times %2 %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "round",
+        "check": "Number"
+      },
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_statement",
+        "name": "callback"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFAB19",
+    "tooltip": "Repeat statements for specific time.",
+    "helpUrl": ""
+  },
+  {
+    "type": "control_wait_until",
+    "message0": "wait until %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "condition",
+        "check": "Boolean"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFAB19",
+    "tooltip": "Wait until condition is true.",
+    "helpUrl": ""
+  },
+  {
+    "type": "control_if",
+    "message0": "if %1 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "condition",
+        "check": "Boolean"
+      },
+      {
+        "type": "input_statement",
+        "name": "callback"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFAB19",
+    "tooltip": "Execute statements if condition is true.",
+    "helpUrl": ""
+  },
+  {
+    "type": "control_else_if",
+    "message0": "else if %1 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "condition",
+        "check": "Boolean"
+      },
+      {
+        "type": "input_statement",
+        "name": "callback"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFAB19",
+    "tooltip": "Execute statements if condition is true.",
+    "helpUrl": ""
+  },
+  {
+    "type": "control_else",
+    "message0": "else %1 %2",
+    "args0": [
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_statement",
+        "name": "callback"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFAB19",
+    "tooltip": "Execute statements it condition is true.",
+    "helpUrl": ""
+  },
+  {
+    "type": "control_while",
+    "message0": "while %1 %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "condition",
+        "check": "Boolean"
+      },
+      {
+        "type": "input_statement",
+        "name": "callback"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFAB19",
+    "tooltip": "Repeat statements until condition is false.",
+    "helpUrl": ""
+  },
+  {
+    "type": "control_do_while",
+    "message0": "do %1 %2 while %3",
+    "args0": [
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_statement",
+        "name": "callback"
+      },
+      {
+        "type": "input_value",
+        "name": "condition"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFAB19",
+    "tooltip": "Continue executing statements if condition is true.",
+    "helpUrl": ""
+  },
+  {
+    "type": "control_for",
+    "message0": "for %1 %2 = %3 %4 %5 by %6 until %7 %8",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "variable",
+        "text": "i"
+      },
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_value",
+        "name": "initial",
+        "check": "Number"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "operator",
+        "options": [
+          ["increment", "+"],
+          ["decrement", "-"]
+        ]
+      },
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_value",
+        "name": "step",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "condition",
+        "check": "Boolean"
+      },
+      {
+        "type": "input_statement",
+        "name": "callback"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#FFAB19",
+    "tooltip": "Loop statements with counter.",
+    "helpUrl": ""
+  }
+]
