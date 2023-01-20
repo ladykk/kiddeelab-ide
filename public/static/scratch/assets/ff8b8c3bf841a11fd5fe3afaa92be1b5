@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Error>
-  <Code>NoSuchKey</Code>
-  <Message>The specified key does not exist.</Message>
-  <RequestId>63C5185193B013313930AE1C</RequestId>
-  <HostId>dist-res-cn.oss-cn-shenzhen.aliyuncs.com</HostId>
-  <Key>mblock/static/assets/scratch/ff8b8c3bf841a11fd5fe3afaa92be1b5.</Key>
-</Error>
