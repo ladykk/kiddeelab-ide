@@ -1,7 +1,8 @@
 import CodeManage from "../components/Code/CodeManage";
-import LiveCode from "../components/Code";
+import LiveCode from "../components/Code/LiveCode";
 import Device from "../components/Device";
 import DeviceManage from "../components/Device/DeviceManage";
+import SerialMonitor from "../components/Device/SerialMonitor";
 import MenuBar from "../components/MenuBar";
 import Workspace from "../components/Workspace";
 import { useInitializeCore } from "../hooks/core";
@@ -18,11 +19,13 @@ export default function IDE() {
         >
           <div className="max-w-[450px] w-full border-r flex flex-col">
             <Device />
-            <DeviceManage />
             <CodeManage />
           </div>
           <Workspace />
-          <LiveCode />
+          <div className="max-w-[450px] w-full h-full bg-gray-100 flex flex-col border-l">
+            <LiveCode />
+            <SerialMonitor />
+          </div>
         </div>
       </div>
     </div>

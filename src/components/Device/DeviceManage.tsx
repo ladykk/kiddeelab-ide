@@ -18,17 +18,11 @@ export default function DeviceManage() {
     !platformLists.includes(deviceId ? deviceLists[deviceId].platform : "");
 
   return (
-    <Fragment>
-      <div className="px-4 py-2 border-b bg-gray-50 flex items-center justify-between flex-0">
-        <div className="flex gap-2">
-          <PortSelector />
-          <PinoutModal />
-        </div>
-        <div className="flex gap-2">
-          <VerifyButton disabled={disableCore} />
-          <UploadButton disabled={disableCore} />
-        </div>
-      </div>
-    </Fragment>
+    <div className="flex h-full items-center gap-2 mr-2 flex-1 justify-end">
+      <PortSelector />
+      <PinoutModal />
+      <VerifyButton disabled={disableCore} />
+      <UploadButton disabled={disableCore} />
+    </div>
   );
 }

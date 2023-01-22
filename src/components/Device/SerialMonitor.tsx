@@ -14,7 +14,6 @@ export default function SerialMonitor() {
   const [input, setInput] = useState<string>("");
   const [baudRate, setBaudRate] = useState<number>(9600);
   const [isOpen, setOpen] = useState<boolean>(false);
-  const [show, setShow] = useState<boolean>(false);
 
   const messageRef = useChatScroll(messages);
 
@@ -42,17 +41,16 @@ export default function SerialMonitor() {
 
   useEffect(() => {
     (async () => {
-      if (show && port && baudRate) {
+      if (port && baudRate) {
         await window.serial.open(port, baudRate);
       } else {
         await window.serial.close();
       }
     })();
-  }, [show, port, baudRate]);
+  }, [port, baudRate, isUploading]);
 
   useEffect(() => {
     if (isUploading) {
-      setShow(false);
       setMessages([]);
     }
   }, [isUploading]);
@@ -77,50 +75,42 @@ export default function SerialMonitor() {
 
   return (
     <Fragment>
-      <Button onClick={() => setShow(true)} disabled={disabled}>
-        <ChatBubbleOvalLeftIcon className="w-5 mr-2" />
-        Serial Monitor
-      </Button>
-      <Modal
-        show={show}
-        onClose={() => {
-          setShow(false);
-        }}
+      <div className="bg-gray-50 px-4 py-2 border-t border-b flex justify-between items-center">
+        <p className="text-lg font-bold text-blue-600">Serial Monitor</p>
+        <TextInput
+          className="w-[80px]"
+          placeholder="Baud Rate"
+          type="number"
+          value={baudRate}
+          sizing="sm"
+          onChange={(e) => setBaudRate(Number(e.target.value))}
+        />
+      </div>
+
+      <div
+        className="w-full h-full min-h-[350px] overflow-y-auto"
+        ref={messageRef}
       >
-        <Modal.Header>
-          <p className="font-bold text-blue-600">Serial Monitor</p>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="w-full h-[70vh] overflow-y-auto" ref={messageRef}>
-            {messages
-              .map((m) => `${new TextDecoder("utf-8").decode(m.message)}`)
-              .join("")
-              .split("\n")
-              .map((m, index) => (
-                <p key={index}>{m}</p>
-              ))}
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <TextInput
-            className="flex-1"
-            placeholder="Write command here..."
-            disabled={!isOpen}
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-          />
-          <Button disabled={!isOpen} onClick={sendMessage}>
-            Send
-          </Button>
-          <TextInput
-            className="w-[100px]"
-            placeholder="Baud Rate"
-            type="number"
-            value={baudRate}
-            onChange={(e) => setBaudRate(Number(e.target.value))}
-          />
-        </Modal.Footer>
-      </Modal>
+        {messages
+          .map((m) => `${new TextDecoder("utf-8").decode(m.message)}`)
+          .join("")
+          .split("\n")
+          .map((m, index) => (
+            <p key={index}>{m}</p>
+          ))}
+      </div>
+      <div className="flex gap-2 bg-gray-50 p-2 border-t items-center">
+        <TextInput
+          className="flex-1"
+          placeholder="Write command here..."
+          disabled={!isOpen || disabled}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+        <Button disabled={!isOpen || disabled} size="sm" onClick={sendMessage}>
+          Send
+        </Button>
+      </div>
     </Fragment>
   );
 }

@@ -1,11 +1,12 @@
 import { useState, useEffect, Fragment } from "react";
 import ArduinoGenerator, { codeFormator } from "../../blocks/arduino";
-import { selectProject, setChange } from "../../redux/project";
+import { selectProject, setChange, setShowCode } from "../../redux/project";
 import { useAppSelector, useAppDispatch } from "../../redux/store";
 import SyntaxHighlighrer from "react-syntax-highlighter";
 import deviceLists from "../../devices";
+import { ToggleSwitch } from "flowbite-react";
 
-export default function Code() {
+export default function LiveCode() {
   const [currentCode, setCode] = useState<string>("");
   const {
     workspace,
@@ -13,8 +14,8 @@ export default function Code() {
     components,
     variables,
     functions,
-    showCode,
     deviceId,
+    showCode,
   } = useAppSelector(selectProject);
   const dispatch = useAppDispatch();
 
@@ -50,27 +51,35 @@ export default function Code() {
     pins,
     components,
     deviceId,
-    showCode,
   ]);
 
-  return showCode ? (
-    <div className="max-w-[450px] w-full h-full bg-gray-100 flex flex-col z-10 border-l">
-      <p className="bg-gray-50 text-lg font-bold px-4 py-2 text-blue-600 border-t border-b">
-        Code
-      </p>
-      <SyntaxHighlighrer
-        langauge="arduino"
-        customStyle={{
-          width: "100%",
-          height: "100%",
-          overflow: "auto",
-          backgroundColor: "rgb(243 244 246)",
-        }}
+  return (
+    <Fragment>
+      <div
+        className={`bg-gray-50 px-4 py-2 border-t flex justify-between items-center ${
+          showCode ? "border-b" : ""
+        }`}
       >
-        {currentCode}
-      </SyntaxHighlighrer>
-    </div>
-  ) : (
-    <Fragment></Fragment>
+        <p className="text-lg font-bold text-blue-600">Code</p>
+        <ToggleSwitch
+          checked={showCode}
+          onChange={(checked) => dispatch(setShowCode(checked))}
+          label=""
+        />
+      </div>
+      {showCode && (
+        <SyntaxHighlighrer
+          langauge="arduino"
+          customStyle={{
+            width: "100%",
+            height: "100%",
+            overflow: "auto",
+            backgroundColor: "rgb(243 244 246)",
+          }}
+        >
+          {currentCode}
+        </SyntaxHighlighrer>
+      )}
+    </Fragment>
   );
 }

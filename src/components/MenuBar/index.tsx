@@ -1,6 +1,5 @@
 import { Dropdown } from "flowbite-react";
 import { LOGO } from "../../assets";
-import SerialMonitor from "../Device/SerialMonitor";
 import NewProject from "./NewProject";
 import OpenProject from "./OpenProject";
 import ProjectName from "./ProjectName";
@@ -8,7 +7,7 @@ import SaveAsProject from "./SaveAsProject";
 import SaveProject from "./SaveProject";
 import Undo from "./Undo";
 import Redo from "./Redo";
-import CodeToggle from "./Code";
+import DeviceManage from "../Device/DeviceManage";
 
 function MenuBar() {
   return (
@@ -33,10 +32,7 @@ function MenuBar() {
         <Redo />
       </div>
       <ProjectName />
-      <div className="flex h-full items-center gap-2 mr-2 flex-1 justify-end">
-        <SerialMonitor />
-        <CodeToggle />
-      </div>
+      <DeviceManage />
     </div>
   );
 }
