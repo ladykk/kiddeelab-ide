@@ -1,0 +1,23 @@
+[
+  {
+    "type": "component_ultrasonic_read",
+    "message0": "read distance trig: %1 echo: %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "trig",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "echo",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Number",
+    "colour": "#5CB1D6",
+    "tooltip": "Read distance value from the ultrasonic sensor.",
+    "helpUrl": ""
+  }
+]
