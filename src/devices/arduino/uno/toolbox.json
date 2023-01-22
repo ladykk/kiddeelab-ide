@@ -112,49 +112,6 @@
       ]
     },
     {
-      "kind": "category",
-      "name": "Component",
-      "colour": "#5CB1D6",
-      "contents": [
-        {
-          "kind": "label",
-          "text": "Ultrasonic Sensor"
-        },
-        {
-          "kind": "block",
-          "type": "component_ultrasonic_read",
-          "inputs": {
-            "trig": { "block": { "type": "pin_arduino_uno" } },
-            "echo": { "block": { "type": "pin_arduino_uno" } }
-          }
-        },
-        {
-          "kind": "label",
-          "text": "Temperature & Humidity Sensor"
-        },
-        {
-          "kind": "block",
-          "type": "component_dht_declare",
-          "inputs": {
-            "pin": { "block": { "type": "pin_arduino_uno" } }
-          }
-        },
-        { "kind": "block", "type": "component_dht_begin" },
-        {
-          "kind": "block",
-          "type": "component_dht_read_humidity"
-        },
-        {
-          "kind": "block",
-          "type": "component_dht_read_temperature"
-        },
-        {
-          "kind": "block",
-          "type": "component_dht_read_heat_index"
-        }
-      ]
-    },
-    {
       "kind": "sep"
     },
     {

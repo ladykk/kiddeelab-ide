@@ -1,5 +1,8 @@
 import { Blocks, FieldTextInput, Block } from "blockly";
+import componentLists from "../devices/components";
 import { Pin, Variable, Function } from "../types/code";
+import { Component } from "../types/component";
+import { DeviceIds } from "../types/device";
 import "./arduino";
 import ArduinoGenerator from "./arduino";
 import { ORDER } from "./arduino/generator";
@@ -23,6 +26,7 @@ export const NUMBER_COLOR = COLOR.OPERATOR;
 export const BOOLEAN_COLOR = COLOR.LOOKS;
 export const VOID_COLOR = COLOR.TEXT;
 export const DEVICE_COLOR = COLOR.EVENTS;
+export const COMPONENT_COLOR = COLOR.SENSING;
 
 const createPin = (pin: Pin) => {
   let contents: Array<{ [index: string]: any }> = [];
@@ -47,6 +51,34 @@ export const createPins = (pins: Array<Pin>) => {
     name: "Pins",
     colour: DEVICE_COLOR,
     contents,
+  };
+};
+
+export const createComponents = (
+  componenets: Array<Component>,
+  deviceId: DeviceIds
+) => {
+  const available_components = deviceId
+    ? componentLists.filter(
+        (component) =>
+          component.supported_devices === "*" ||
+          component.supported_devices.includes(deviceId)
+      )
+    : [];
+  let contents: Array<{ [index: string]: any }> = [];
+  componenets.forEach((component) => {
+    const component_detail = available_components.find(
+      (available_component) => available_component.id === component.component
+    );
+    if (component_detail) {
+      contents = [...contents, ...component_detail.blocks(component, deviceId)];
+    }
+  });
+  return {
+    kind: "category",
+    name: "Component",
+    colour: "#5CB1D6",
+    contents: contents,
   };
 };
 

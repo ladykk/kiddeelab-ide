@@ -3,7 +3,7 @@
 }
 
 .blocklyToolboxCategory {
-  @apply h-14 hover:cursor-pointer hover:bg-gray-200;
+  @apply h-12 hover:cursor-pointer hover:bg-gray-200;
 }
 
 .blocklyTreeRow {
@@ -15,7 +15,7 @@
 }
 
 .blocklyTreeLabel {
-  @apply px-4 mx-auto w-full font-bold text-sm;
+  @apply pl-3 pr-2 mx-auto w-full font-semibold text-sm;
 }
 
 .blocklyFlyout {

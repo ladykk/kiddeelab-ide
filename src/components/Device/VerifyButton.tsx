@@ -9,7 +9,7 @@ import { removeToast, addToast } from "../../redux/toast";
 import deviceLists from "../../devices";
 
 export default function VerifyButton({ disabled }: { disabled: boolean }) {
-  const { workspace, pins, variables, functions, deviceId } =
+  const { workspace, pins, components, variables, functions, deviceId } =
     useAppSelector(selectProject);
   const { isVerify, isVerifying, isUploading } = useAppSelector(selectCore);
   const dispatch = useAppDispatch();
@@ -39,6 +39,7 @@ export default function VerifyButton({ disabled }: { disabled: boolean }) {
       const code = codeFormator(
         raw,
         pins,
+        components,
         variables,
         functions,
         deviceLists[deviceId]

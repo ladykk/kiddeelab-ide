@@ -7,7 +7,9 @@ export default function Functions() {
   const { functions } = useAppSelector(selectProject);
   return (
     <div className="flex flex-col gap-3">
-      <AddFunctionModal />
+      <div className="flex justify-center items-center gap-3">
+        <AddFunctionModal />
+      </div>
       {functions.length > 0 && (
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-1">

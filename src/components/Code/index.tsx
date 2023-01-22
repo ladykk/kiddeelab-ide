@@ -7,15 +7,29 @@ import deviceLists from "../../devices";
 
 export default function Code() {
   const [currentCode, setCode] = useState<string>("");
-  const { workspace, pins, variables, functions, showCode, deviceId } =
-    useAppSelector(selectProject);
+  const {
+    workspace,
+    pins,
+    components,
+    variables,
+    functions,
+    showCode,
+    deviceId,
+  } = useAppSelector(selectProject);
   const dispatch = useAppDispatch();
 
   const onWorkspaceChange = () => {
     if (workspace && deviceId) {
       const raw = ArduinoGenerator.workspaceToCode(workspace);
       setCode(
-        codeFormator(raw, pins, variables, functions, deviceLists[deviceId])
+        codeFormator(
+          raw,
+          pins,
+          components,
+          variables,
+          functions,
+          deviceLists[deviceId]
+        )
       );
       dispatch(setChange(true));
     }
@@ -30,7 +44,14 @@ export default function Code() {
     }
   });
 
-  useEffect(onWorkspaceChange, [variables, functions, pins, showCode]);
+  useEffect(onWorkspaceChange, [
+    variables,
+    functions,
+    pins,
+    components,
+    deviceId,
+    showCode,
+  ]);
 
   return showCode ? (
     <div className="max-w-[450px] w-full h-full bg-gray-100 flex flex-col z-10 border-l">

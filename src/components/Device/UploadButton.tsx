@@ -15,7 +15,7 @@ import { useAppSelector, useAppDispatch } from "../../redux/store";
 import { removeToast, addToast } from "../../redux/toast";
 
 export default function UploadButton({ disabled }: { disabled: boolean }) {
-  const { workspace, pins, variables, functions, deviceId, port } =
+  const { workspace, pins, components, variables, functions, deviceId, port } =
     useAppSelector(selectProject);
   const dispatch = useAppDispatch();
   const { isVerify, isVerifying, isUploading, isUpload, uploadTimestamp } =
@@ -48,6 +48,7 @@ export default function UploadButton({ disabled }: { disabled: boolean }) {
         const code = codeFormator(
           raw,
           pins,
+          components,
           variables,
           functions,
           deviceLists[deviceId]

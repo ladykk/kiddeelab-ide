@@ -126,41 +126,7 @@
         }
       ]
     },
-    {
-      "kind": "category",
-      "name": "Sensor",
-      "colour": "#5CB1D6",
-      "contents": [
-        {
-          "kind": "block",
-          "type": "component_ultrasonic_read",
-          "inputs": {
-            "trig": { "block": { "type": "pin_esp_32" } },
-            "echo": { "block": { "type": "pin_esp_32" } }
-          }
-        },
-        {
-          "kind": "block",
-          "type": "component_dht_declare",
-          "inputs": {
-            "pin": { "block": { "type": "pin_esp_32" } }
-          }
-        },
-        { "kind": "block", "type": "component_dht_begin" },
-        {
-          "kind": "block",
-          "type": "component_dht_read_humidity"
-        },
-        {
-          "kind": "block",
-          "type": "component_dht_read_temperature"
-        },
-        {
-          "kind": "block",
-          "type": "component_dht_read_heat_index"
-        }
-      ]
-    },
+
     {
       "kind": "sep"
     },

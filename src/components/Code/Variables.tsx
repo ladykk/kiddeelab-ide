@@ -7,7 +7,9 @@ export default function Variables() {
   const { variables } = useAppSelector(selectProject);
   return (
     <div className="flex flex-col gap-3">
-      <AddVariableModal />
+      <div className="flex justify-center items-center gap-3">
+        <AddVariableModal />
+      </div>
       {variables.length > 0 && (
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-1">

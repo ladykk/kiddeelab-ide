@@ -1,4 +1,8 @@
-import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/24/solid";
+import {
+  MinusCircleIcon,
+  PlusCircleIcon,
+  PlusIcon,
+} from "@heroicons/react/24/solid";
 import {
   Label,
   TextInput,
@@ -14,7 +18,7 @@ import { STRING_COLOR, BOOLEAN_COLOR, NUMBER_COLOR } from "../../blocks";
 import { selectProject, addFunction } from "../../redux/project";
 import { useAppSelector, useAppDispatch } from "../../redux/store";
 import { Function, Variable } from "../../types/code";
-import { convertName } from "../../utils/code";
+import { convertName, convertVariableName } from "../../utils/code";
 import { initialVariableForm } from "./AddVariableModal";
 
 export const initialFunctionForm: Function = {
@@ -37,7 +41,16 @@ export default function AddFunctionModal() {
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     if (e.target.id) {
-      setForm({ ...form, [e.target.id]: e.target.value });
+      setForm({
+        ...form,
+        [e.target.id]:
+          e.target.type === "checkbox"
+            ? // @ts-ignore
+              e.target.checked
+            : e.target.id === "name"
+            ? convertVariableName(e.target.value)
+            : e.target.value,
+      });
       setError("");
     }
   };
@@ -102,6 +115,8 @@ export default function AddFunctionModal() {
                 e.target.type === "checkbox"
                   ? // @ts-ignore
                     e.target.checked
+                  : e.target.id === "name"
+                  ? convertVariableName(e.target.value)
                   : e.target.value,
             };
           }
@@ -117,10 +132,14 @@ export default function AddFunctionModal() {
 
   return (
     <Fragment>
-      <PlusCircleIcon
-        className="w-8 h-8 text-blue-700 hover:text-blue-800 hover:cursor-pointer mx-auto"
+      <div
+        className="bg-blue-700 px-4 py-2.5 flex text-white gap-2 items-center rounded-xl hover:bg-blue-600 hover:cursor-pointer"
         onClick={() => setShow(true)}
-      />
+      >
+        <PlusIcon className="w-5 h-5" />
+        <p className="font-semibold text-sm">Add Function</p>
+      </div>
+
       <Modal size="4xl" show={show} onClose={() => setShow(false)}>
         <form onSubmit={handleOnAddFunction}>
           <Modal.Header>

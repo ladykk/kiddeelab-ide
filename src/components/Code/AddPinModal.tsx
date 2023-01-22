@@ -1,6 +1,13 @@
 import deviceLists from "../../devices";
-import { PlusCircleIcon } from "@heroicons/react/24/solid";
-import { Button, Label, Modal, Select, TextInput } from "flowbite-react";
+import { PlusIcon } from "@heroicons/react/24/solid";
+import {
+  Button,
+  Dropdown,
+  Label,
+  Modal,
+  Select,
+  TextInput,
+} from "flowbite-react";
 import { ChangeEvent, FormEvent, Fragment, useState } from "react";
 import { addPin, selectProject } from "../../redux/project";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
@@ -14,12 +21,20 @@ export const initialPinForm: Pin = {
 
 export default function AddPinModal() {
   const [show, setShow] = useState<boolean>(false);
-  const { pins, deviceId } = useAppSelector(selectProject);
+  const { pins, components, deviceId } = useAppSelector(selectProject);
   const dispatch = useAppDispatch();
   const [form, setForm] = useState<Pin>(initialPinForm);
   const [error, setError] = useState<string>("");
 
   const device = deviceId ? deviceLists[deviceId] : null;
+
+  const availablePins = device
+    ? device.pins.filter(
+        (p) =>
+          pins.every((pin) => pin.pin !== p) &&
+          components.every((c) => c.pins.every((cp) => cp.pin !== p))
+      )
+    : [];
 
   const handleOnChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -27,9 +42,7 @@ export default function AddPinModal() {
     if (e.target.id) {
       setForm((form) => ({
         ...form,
-        [e.target.id]:
-          // @ts-ignore
-          e.target.type === "checkbox" ? e.target.checked : e.target.value,
+        [e.target.id]: convertDefine(e.target.value),
       }));
       setError("");
     }
@@ -39,23 +52,32 @@ export default function AddPinModal() {
     e.preventDefault();
 
     // Reject if found duplicate pin.
-    if (pins.some((p) => p.name === form.name)) {
+    if (
+      pins.some((p) => p.name === form.name) ||
+      components
+        .map((c) => c.pins.map((cp) => `${c.name}_${cp.name}`))
+        .some((c) => c.includes(form.name))
+    ) {
       return setError(`Cannot named duplicate pin. (${form.name})`);
     }
-    dispatch(addPin({ name: convertDefine(form.name), pin: form.pin }));
+    dispatch(addPin(form));
     setForm(initialPinForm);
     setShow(false);
   };
   return (
     <Fragment>
-      <PlusCircleIcon
-        className="w-8 h-8 text-blue-700 hover:text-blue-800 hover:cursor-pointer mx-auto"
+      <div
+        className="bg-blue-700 px-4 py-2.5 flex text-white gap-2 items-center rounded-xl hover:bg-blue-600 hover:cursor-pointer"
         onClick={() => setShow(true)}
-      />
+      >
+        <PlusIcon className="w-5 h-5" />
+        <p className="font-semibold text-sm">Define Pin</p>
+      </div>
+
       <Modal size="lg" show={show} onClose={() => setShow(false)}>
         <form onSubmit={handleAddPin}>
           <Modal.Header>
-            <p className="text-blue-600 font-bold">Add Pin</p>
+            <p className="text-blue-600 font-bold">Define Pin</p>
           </Modal.Header>
           <Modal.Body className="flex flex-col gap-4">
             <div>
@@ -84,9 +106,7 @@ export default function AddPinModal() {
                   Select Pin
                 </option>
                 {device &&
-                  device.pins
-                    .filter((p) => pins.every((pin) => pin.pin !== p))
-                    .map((p) => <option value={p}>{p}</option>)}
+                  availablePins.map((p) => <option value={p}>{p}</option>)}
               </Select>
             </div>
 

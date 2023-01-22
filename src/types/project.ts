@@ -1,4 +1,5 @@
 import { Variable, Function, Pin } from "./code";
+import { Component } from "./component";
 import { DeviceIds } from "./device";
 
 export type ProjectJson = {
@@ -6,6 +7,7 @@ export type ProjectJson = {
   workspace: { [index: string]: any };
   deviceId: DeviceIds;
   pins: Array<Pin>;
+  components: Array<Component>;
   variables: Array<Variable>;
   functions: Array<Function>;
 };

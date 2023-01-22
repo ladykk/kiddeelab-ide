@@ -1,4 +1,4 @@
-import { PlusCircleIcon } from "@heroicons/react/24/solid";
+import { PlusCircleIcon, PlusIcon } from "@heroicons/react/24/solid";
 import {
   Label,
   TextInput,
@@ -11,7 +11,7 @@ import { useState, ChangeEvent, FormEvent, Fragment } from "react";
 import { selectProject, addVariable } from "../../redux/project";
 import { useAppSelector, useAppDispatch } from "../../redux/store";
 import { Variable } from "../../types/code";
-import { convertName } from "../../utils/code";
+import { convertName, convertVariableName } from "../../utils/code";
 
 export const initialVariableForm: Variable & { isArray: boolean } = {
   name: "",
@@ -35,8 +35,12 @@ export default function AddVariableModal() {
       setForm((form) => ({
         ...form,
         [e.target.id]:
-          // @ts-ignore
-          e.target.type === "checkbox" ? e.target.checked : e.target.value,
+          e.target.type === "checkbox"
+            ? // @ts-ignore
+              e.target.checked
+            : e.target.id === "name"
+            ? convertVariableName(e.target.value)
+            : e.target.value,
       }));
       setError("");
     }
@@ -54,7 +58,7 @@ export default function AddVariableModal() {
     }
     dispatch(
       addVariable({
-        name: convertName(form.name),
+        name: form.name,
         type: form.type,
         size: form.isArray ? form.size : undefined,
       })
@@ -64,10 +68,14 @@ export default function AddVariableModal() {
   };
   return (
     <Fragment>
-      <PlusCircleIcon
-        className="w-8 h-8 text-blue-700 hover:text-blue-800 hover:cursor-pointer mx-auto"
+      <div
+        className="bg-blue-700 px-4 py-2.5 flex text-white gap-2 items-center rounded-xl hover:bg-blue-600 hover:cursor-pointer"
         onClick={() => setShow(true)}
-      />
+      >
+        <PlusIcon className="w-5 h-5" />
+        <p className="font-semibold text-sm">Add Variable</p>
+      </div>
+
       <Modal size="lg" show={show} onClose={() => setShow(false)}>
         <form onSubmit={handleAddVariable}>
           <Modal.Header>
