@@ -1,7 +1,6 @@
 import CodeManage from "../components/Code/CodeManage";
 import LiveCode from "../components/Code/LiveCode";
 import Device from "../components/Device";
-import DeviceManage from "../components/Device/DeviceManage";
 import SerialMonitor from "../components/Device/SerialMonitor";
 import MenuBar from "../components/MenuBar";
 import Workspace from "../components/Workspace";
@@ -10,7 +9,7 @@ import { useInitializeCore } from "../hooks/core";
 export default function IDE() {
   useInitializeCore();
   return (
-    <div className="w-screen h-screen max-h-[100vh] max-w-[100vw] bg-gray-50 flex">
+    <div className="w-screen h-screen max-h-[100vh] max-w-[100vw] bg-gray-50 flex overflow-hidden">
       <div className="w-full h-full flex flex-col">
         <MenuBar />
         <div
