@@ -1,0 +1,96 @@
+[
+  {
+    "type": "component_dc_motor_setup",
+    "message0": "setup dc motor %1 %2 %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "dir1",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "dir2",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pwm",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5CB1D6",
+    "tooltip": "Setup dc motor.",
+    "helpUrl": ""
+  },
+  {
+    "type": "component_dc_motor_run",
+    "message0": "run dc motor at speed %1 % %2. %3 %4 %5",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "speed",
+        "check": "Number"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "direction",
+        "options": [
+          ["clockwise", "clockwise"],
+          ["counter-clockwise", "counter-clockwise"]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "dir1",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "dir2",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pwm",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5CB1D6",
+    "tooltip": "Run dc motor.",
+    "helpUrl": ""
+  },
+  {
+    "type": "component_dc_motor_stop",
+    "message0": "stop dc motor %1 %2 %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "dir1",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "dir2",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pwm",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5CB1D6",
+    "tooltip": "Stop dc motor.",
+    "helpUrl": ""
+  }
+]

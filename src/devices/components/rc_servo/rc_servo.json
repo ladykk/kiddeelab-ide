@@ -1,0 +1,46 @@
+[
+  {
+    "type": "component_rc_servo_attach",
+    "message0": "attach servo %1 to pin %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "servo",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5CB1D6",
+    "tooltip": "Attach pin to servo variable.",
+    "helpUrl": ""
+  },
+  {
+    "type": "component_rc_servo_set_angle",
+    "message0": "set servo %1 angle to %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "servo",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "angle",
+        "check": "Number"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5CB1D6",
+    "tooltip": "Set servo angle.",
+    "helpUrl": ""
+  }
+]

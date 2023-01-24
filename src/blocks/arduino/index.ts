@@ -40,7 +40,7 @@ export const codeFormator = (
             : v.type === "String"
             ? "String"
             : "double"
-        }${v.size ? `[${v.size}]` : ""} ${v.name};`
+        }${v.size ? `[${v.size}]` : ""} ${v.name}`
     )
     .forEach((v) => declare_variables.add(v));
 
@@ -130,10 +130,10 @@ export const codeFormator = (
     Array.from(defines).join("\n") + (defines.size > 0 ? "\n\n" : "")
   }${
     Array.from(declare_variables).join(";\n") +
-    (declare_variables.size > 0 ? "\n\n" : "")
+    (declare_variables.size > 0 ? ";\n\n" : "")
   }${
     Array.from(declare_functions).join(";\n") +
-    (declare_functions.size > 0 ? "\n" : "")
+    (declare_functions.size > 0 ? "\n\n" : "")
   }${structure}`;
 };
 

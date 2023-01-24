@@ -6,7 +6,7 @@ const ADDITIONAL_URLS = [
   "https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json",
 ];
 
-const LIBS = ["DHT sensor library", "ESPAsyncWebSrv"];
+const LIBS = ["DHT sensor library", "ESPAsyncWebSrv", "Servo"];
 
 const ADDITIONAL_URLS_STRING =
   ADDITIONAL_URLS.length > 0 ? `${ADDITIONAL_URLS.join(" ")}` : "";

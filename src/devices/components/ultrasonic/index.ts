@@ -30,7 +30,7 @@ const Ultrasonic: ComponentDetail = {
     return [
       {
         kind: "label",
-        text: component.name,
+        text: `${component.name} (Ultrasonic)`,
       },
       {
         kind: "block",

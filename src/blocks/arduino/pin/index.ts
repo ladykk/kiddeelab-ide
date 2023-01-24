@@ -13,7 +13,7 @@ ArduinoGenerator["pin_mode"] = function (block: Block) {
 
 ArduinoGenerator["pin_define"] = function (block: Block) {
   var pin = block.getFieldValue("pin");
-  return [`${pin.toUpperCase()}`, ORDER.ATOMIC];
+  return [`${pin}`, ORDER.ATOMIC];
 };
 
 ArduinoGenerator["pin_digital_read"] = function (block: Block) {

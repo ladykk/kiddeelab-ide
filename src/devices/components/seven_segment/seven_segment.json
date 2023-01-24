@@ -1,0 +1,200 @@
+[
+  {
+    "type": "component_seven_segment_setup_anode",
+    "message0": "setup anode 7 segment %1 %2 %3 %4 %5 %6 %7",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "pin_a",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_b",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_c",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_d",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_e",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_f",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_g",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5CB1D6",
+    "tooltip": "Setup anode 7 segment.",
+    "helpUrl": ""
+  },
+  {
+    "type": "component_seven_segment_setup_cathode",
+    "message0": "setup cathode 7 segment %1 %2 %3 %4 %5 %6 %7",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "pin_a",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_b",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_c",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_d",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_e",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_f",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_g",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5CB1D6",
+    "tooltip": "Setup cathode 7 segment.",
+    "helpUrl": ""
+  },
+  {
+    "type": "component_seven_segment_set_number_anode",
+    "message0": "set number %1 on anode seven segment %2 %3 %4 %5 %6 %7 %8",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "num",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_a",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_b",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_c",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_d",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_e",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_f",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_g",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5CB1D6",
+    "tooltip": "Set number on anode 7 segment.",
+    "helpUrl": ""
+  },
+  {
+    "type": "component_seven_segment_set_number_cathode",
+    "message0": "set number %1 on cathode seven segment %2 %3 %4 %5 %6 %7 %8",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "num",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_a",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_b",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_c",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_d",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_e",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_f",
+        "check": "String"
+      },
+      {
+        "type": "input_value",
+        "name": "pin_g",
+        "check": "String"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#5CB1D6",
+    "tooltip": "Set number on cathode 7 segment.",
+    "helpUrl": ""
+  }
+]

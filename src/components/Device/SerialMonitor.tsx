@@ -88,7 +88,7 @@ export default function SerialMonitor() {
       </div>
 
       <div
-        className="w-full h-full min-h-[350px] overflow-y-auto"
+        className="w-full h-full min-h-[350px] overflow-y-auto p-2"
         ref={messageRef}
       >
         {messages

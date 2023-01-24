@@ -61,25 +61,7 @@ const DHT: ComponentDetail = {
     return [
       {
         kind: "label",
-        text: component.name,
-      },
-      {
-        kind: "block",
-        type: "component_dht_declare",
-        inputs: {
-          name: {
-            block: {
-              type: "pin_define",
-              fields: { pin: component.name },
-            },
-          },
-          pin: {
-            block: {
-              type: "pin_define",
-              fields: { pin: component.pins[0].pin },
-            },
-          },
-        },
+        text: `${component.name} (Temperature & Humidity)`,
       },
       {
         kind: "block",

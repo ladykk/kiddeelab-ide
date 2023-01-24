@@ -75,7 +75,11 @@ ArduinoGenerator["control_do_while"] = function (block: Block) {
 };
 
 ArduinoGenerator["control_for"] = function (block: Block) {
-  const variable: string = block.getFieldValue("variable");
+  const variable: string = ArduinoGenerator.valueToCode(
+    block,
+    "variable",
+    ORDER.ATOMIC
+  );
   const initial: number = Number(
     ArduinoGenerator.valueToCode(block, "initial", ORDER.ATOMIC)
   );
@@ -89,7 +93,7 @@ ArduinoGenerator["control_for"] = function (block: Block) {
     ORDER.ATOMIC
   );
   const callback: string = ArduinoGenerator.statementToCode(block, "callback");
-  const code = `for(int ${variable} = ${initial}; ${condition}; ${variable} = ${variable} ${operator} ${step}) {\n${callback}}\n`;
+  const code = `for(${variable} = ${initial}; ${condition}; ${variable} = ${variable} ${operator} ${step}) {\n${callback}}\n`;
   return code;
 };
 

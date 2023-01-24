@@ -165,7 +165,7 @@ export default function AddComponentModal() {
           </Modal.Header>
           <Modal.Body className="flex flex-col gap-4">
             <p className="font-bold text-lg">Components:</p>
-            <div className="flex overflow-x-auto gap-3">
+            <div className="flex gap-3 pb-2 overflow-x-scroll">
               {componentLists.map((component) => (
                 <ComponentPreview
                   component={component}
@@ -175,7 +175,7 @@ export default function AddComponentModal() {
                 />
               ))}
             </div>
-            <hr />
+
             <div className="flex flex-col gap-4">
               {component && form ? (
                 <Fragment>

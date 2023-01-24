@@ -75,6 +75,7 @@ export default function LiveCode() {
             height: "100%",
             overflow: "auto",
             backgroundColor: "rgb(243 244 246)",
+            fontSize: "0.8rem",
           }}
         >
           {currentCode}

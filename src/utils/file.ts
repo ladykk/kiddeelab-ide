@@ -19,6 +19,7 @@ export const createProjectJson = (
     workspace: workspace,
     deviceId: project.deviceId,
     pins: project.pins,
+    components: project.components,
     variables: project.variables,
     functions: project.functions,
   };
@@ -30,6 +31,7 @@ export const readProjectJson = (workspace: WorkspaceSvg, json: ProjectJson) => {
     projectName: json.projectName,
     deviceId: json.deviceId,
     pins: json.pins,
+    components: json.components,
     variables: json.variables,
     functions: json.functions,
   };
