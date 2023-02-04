@@ -29,13 +29,85 @@ export const DEVICE_COLOR = COLOR.EVENTS;
 export const COMPONENT_COLOR = COLOR.SENSING;
 
 const createPin = (pin: Pin) => {
-  let contents: Array<{ [index: string]: any }> = [];
+  let contents: Array<{ [index: string]: any }> = [
+    {
+      kind: "label",
+      text: pin.name,
+    },
+  ];
   contents = [
     ...contents,
     {
       kind: "block",
-      type: "pin_define",
-      fields: { pin: pin.name },
+      type: "pin_mode",
+      inputs: {
+        pin: {
+          block: {
+            type: "pin_define",
+            fields: {
+              pin: pin.name,
+            },
+          },
+        },
+      },
+    },
+    {
+      kind: "block",
+      type: "pin_digital_read",
+      inputs: {
+        pin: {
+          block: {
+            type: "pin_define",
+            fields: {
+              pin: pin.name,
+            },
+          },
+        },
+      },
+    },
+    {
+      kind: "block",
+      type: "pin_digital_write",
+      inputs: {
+        pin: {
+          block: {
+            type: "pin_define",
+            fields: {
+              pin: pin.name,
+            },
+          },
+        },
+        output: { block: { type: "pin_digital_output" } },
+      },
+    },
+    {
+      kind: "block",
+      type: "pin_analog_read",
+      inputs: {
+        pin: {
+          block: {
+            type: "pin_define",
+            fields: {
+              pin: pin.name,
+            },
+          },
+        },
+      },
+    },
+    {
+      kind: "block",
+      type: "pin_analog_write",
+      inputs: {
+        pin: {
+          block: {
+            type: "pin_define",
+            fields: {
+              pin: pin.name,
+            },
+          },
+        },
+        output: { block: { type: "pin_pwm_output" } },
+      },
     },
   ];
   return contents;
@@ -83,7 +155,12 @@ export const createComponents = (
 };
 
 const createVariable = (variable: Variable) => {
-  let contents: Array<{ [index: string]: any }> = [];
+  let contents: Array<{ [index: string]: any }> = [
+    {
+      kind: "label",
+      text: `${variable.name}${variable.size ? ` [${variable.size}]` : ""}`,
+    },
+  ];
   switch (variable.type) {
     case "Number":
       contents = [
@@ -297,9 +374,11 @@ const createVariable = (variable: Variable) => {
 
 export const createVariables = (variables: Array<Variable>) => {
   let contents: Array<{ [index: string]: any }> = [];
-  variables.forEach((variable) => {
-    contents = [...contents, ...createVariable(variable)];
-  });
+  variables
+    .sort((a, b) => (a.size ? 1 : 0) - (b.size ? 1 : 0))
+    .forEach((variable) => {
+      contents = [...contents, ...createVariable(variable)];
+    });
   return {
     kind: "category",
     name: "Variable",
@@ -382,7 +461,14 @@ export const createFunctions = (functions: Array<Function>) => {
           },
         },
       };
-    contents = [...contents, declare];
+    contents = [
+      ...contents,
+      {
+        kind: "label",
+        text: `${func.name}(${func.args.map((arg) => arg.name).join(", ")})`,
+      },
+      declare,
+    ];
 
     contents = [
       ...contents,
@@ -399,6 +485,11 @@ export const createFunctions = (functions: Array<Function>) => {
       (arg) => (contents = [...contents, ...createVariable(arg)])
     );
   });
+
+  contents = [
+    ...contents,
+    { kind: "label", text: "------------------------------" },
+  ];
 
   return {
     kind: "category",

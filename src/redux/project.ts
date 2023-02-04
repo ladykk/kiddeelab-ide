@@ -17,7 +17,6 @@ import { readProjectJson } from "../utils/file";
 import { Component } from "../types/component";
 
 type State = {
-  projectName: string;
   workspace: WorkspaceSvg | null;
   deviceId: DeviceIds | null;
   port: string;
@@ -32,7 +31,6 @@ type State = {
 export type ProjectState = State;
 
 const initialState: State = {
-  projectName: "",
   workspace: null,
   deviceId: null,
   port: "",

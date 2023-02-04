@@ -5,8 +5,9 @@ import { selectProject, setProjectName } from "../../redux/project";
 import { useAppSelector, useAppDispatch } from "../../redux/store";
 
 export default function ProjectName() {
-  const { projectName, isChange } = useAppSelector(selectProject);
+  const { isChange } = useAppSelector(selectProject);
   const file = useAppSelector(selectFile);
+  const name = file.split("\\").pop()?.split(".")[0] ?? "";
   const dispatch = useAppDispatch();
   return (
     <div className="flex items-center gap-2 flex-1 justify-center">
@@ -16,11 +17,13 @@ export default function ProjectName() {
         </Tooltip>
       )}
       <TextInput
-        value={projectName}
+        style={{ textAlign: "center" }}
+        value={name}
         onChange={(e) => dispatch(setProjectName(e.target.value))}
         sizing="sm"
-        placeholder="Device Project"
+        placeholder="Unsaved Project"
         className="w-[200px]"
+        readOnly
       />
       {file && (
         <Badge color={isChange ? "warning" : "success"} size="sm">

@@ -15,7 +15,6 @@ export const createProjectJson = (
   if (!project.workspace || !project.deviceId) return null;
   const workspace = serialization.workspaces.save(project.workspace);
   return {
-    projectName: project.projectName,
     workspace: workspace,
     deviceId: project.deviceId,
     pins: project.pins,
@@ -28,7 +27,6 @@ export const createProjectJson = (
 export const readProjectJson = (workspace: WorkspaceSvg, json: ProjectJson) => {
   serialization.workspaces.load(json.workspace, workspace);
   return {
-    projectName: json.projectName,
     deviceId: json.deviceId,
     pins: json.pins,
     components: json.components,

@@ -55,9 +55,9 @@ export default function Workspace() {
           element = element.offsetParent as HTMLElement | null;
         } while (element);
         // Position blocklyDiv over blocklyArea.
-        blocklyDiv.current.style.left = x - 450 + "px";
+        blocklyDiv.current.style.left = x - 350 + "px";
         blocklyDiv.current.style.top = y - 56 + "px";
-        blocklyDiv.current.style.right = (showCode ? 450 : 0) + "px";
+        blocklyDiv.current.style.right = 400 + "px";
         blocklyDiv.current.style.width = blocklyArea.current.offsetWidth + "px";
         blocklyDiv.current.style.height =
           blocklyArea.current.offsetHeight + "px";

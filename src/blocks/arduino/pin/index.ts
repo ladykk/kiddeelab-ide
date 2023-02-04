@@ -4,6 +4,23 @@ import blocks from "./pin.json";
 
 defineBlocksWithJsonArray(blocks);
 
+// Arduino blocks.
+ArduinoGenerator["arduino_structure"] = function (block: Block) {
+  const setup: string = ArduinoGenerator.statementToCode(block, "setup");
+  const loop: string = ArduinoGenerator.statementToCode(block, "loop");
+  return `-> setup\nvoid setup() {\n${setup}}\n-> end\n-> loop\nvoid loop() {\n${loop}}\n-> end`;
+};
+
+ArduinoGenerator["arduino_setup"] = function (block: Block) {
+  const setup: string = ArduinoGenerator.statementToCode(block, "setup");
+  return `-> setup\nvoid setup() {\n${setup}}\n-> end`;
+};
+
+ArduinoGenerator["arduino_loop"] = function (block: Block) {
+  const loop: string = ArduinoGenerator.statementToCode(block, "loop");
+  return `-> loop\nvoid loop() {\n${loop}}\n-> end`;
+};
+
 // Pin blocks.
 ArduinoGenerator["pin_mode"] = function (block: Block) {
   const pin: string = ArduinoGenerator.valueToCode(block, "pin", ORDER.ATOMIC);

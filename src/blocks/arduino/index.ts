@@ -101,9 +101,13 @@ export const codeFormator = (
         .forEach((f) => declare_functions.add(f));
   });
 
-  // Arduino Structure
-  const structure =
-    split.find((s) => s.startsWith("structure"))?.substring(10) ?? "";
+  // Setup
+  const setup =
+    split.find((s) => s.startsWith("setup"))?.substring(6) ?? "void setup() {}";
+
+  // Loop
+  const loop =
+    split.find((s) => s.startsWith("loop"))?.substring(5) ?? "void loop() {}";
 
   // Retrives Dependencies
   raw.split("\n").forEach((line) => {
@@ -134,7 +138,7 @@ export const codeFormator = (
   }${
     Array.from(declare_functions).join(";\n") +
     (declare_functions.size > 0 ? "\n\n" : "")
-  }${structure}`;
+  }${setup}\n\n${loop}\n`;
 };
 
 export default ArduinoGenerator;

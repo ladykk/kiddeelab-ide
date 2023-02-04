@@ -159,7 +159,8 @@
       },
       {
         "type": "input_value",
-        "name": "condition"
+        "name": "condition",
+        "check": "Boolean"
       }
     ],
     "inputsInline": true,

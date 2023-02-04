@@ -3,7 +3,6 @@ import { Component } from "./component";
 import { DeviceIds } from "./device";
 
 export type ProjectJson = {
-  projectName: string;
   workspace: { [index: string]: any };
   deviceId: DeviceIds;
   pins: Array<Pin>;

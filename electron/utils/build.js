@@ -55,6 +55,7 @@ module.exports.buildVerify = async (event, fqbn, code) => {
 
 module.exports.buildUpload = async (event, port, fqbn) => {
   try {
+    console.log(`${CORE} upload -p ${port} --fqbn ${fqbn} KiddeeIDE`);
     const { stdout, stderr } = await exec(
       `${CORE} upload -p ${port} --fqbn ${fqbn} KiddeeIDE`
     );

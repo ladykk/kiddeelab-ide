@@ -30,7 +30,7 @@ const createWindow = async () => {
       nodeIntegration: true,
       preload: path.join(__dirname, "electron", "preload.js"),
     },
-    autoHideMenuBar: true,
+    autoHideMenuBar: app.isPackaged,
   });
 
   ipcMain.handle("file/open", fileOpen(mainWindow));

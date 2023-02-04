@@ -1,5 +1,5 @@
 import { ChatBubbleOvalLeftIcon } from "@heroicons/react/24/solid";
-import { Button, Modal, TextInput } from "flowbite-react";
+import { Button, Modal, Select, TextInput } from "flowbite-react";
 import { useState, useEffect, Fragment } from "react";
 import { useChatScroll } from "../../hooks/chat";
 import { selectCore } from "../../redux/core";
@@ -41,8 +41,10 @@ export default function SerialMonitor() {
 
   useEffect(() => {
     (async () => {
-      if (port && baudRate) {
+      if (port && baudRate && !isUploading) {
+        await window.serial.close();
         await window.serial.open(port, baudRate);
+        setMessages([]);
       } else {
         await window.serial.close();
       }
@@ -77,14 +79,28 @@ export default function SerialMonitor() {
     <Fragment>
       <div className="bg-gray-50 px-4 py-2 border-t border-b flex justify-between items-center">
         <p className="text-lg font-bold text-blue-600">Serial Monitor</p>
-        <TextInput
+        <Select
           className="w-[80px]"
           placeholder="Baud Rate"
-          type="number"
           value={baudRate}
           sizing="sm"
           onChange={(e) => setBaudRate(Number(e.target.value))}
-        />
+        >
+          <option value="110">110</option>
+          <option value="300">300</option>
+          <option value="600">600</option>
+          <option value="1200">1200</option>
+          <option value="2400">2400</option>
+          <option value="4800">4800</option>
+          <option value="9600">9600</option>
+          <option value="14400">14400</option>
+          <option value="19200">19200</option>
+          <option value="38400">38400</option>
+          <option value="57600">57600</option>
+          <option value="115200">115200</option>
+          <option value="128000">128000</option>
+          <option value="256000">25600</option>
+        </Select>
       </div>
 
       <div
@@ -106,6 +122,11 @@ export default function SerialMonitor() {
           disabled={!isOpen || disabled}
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          onKeyUp={(e) => {
+            if (e.key === "Enter") {
+              sendMessage();
+            }
+          }}
         />
         <Button disabled={!isOpen || disabled} size="sm" onClick={sendMessage}>
           Send

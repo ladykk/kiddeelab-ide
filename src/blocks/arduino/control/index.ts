@@ -70,7 +70,7 @@ ArduinoGenerator["control_do_while"] = function (block: Block) {
     "condition",
     ORDER.ATOMIC
   );
-  const code = `do {\n${callback}} while(${condition})\n`;
+  const code = `do {\n${callback}} while(${condition});\n`;
   return code;
 };
 

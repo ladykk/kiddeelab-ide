@@ -19,7 +19,7 @@
 }
 
 .blocklyFlyout {
-  @apply bg-gray-400 bg-opacity-20;
+  @apply bg-gray-100 border-r;
 }
 
 .blocklyFlyoutBackground {

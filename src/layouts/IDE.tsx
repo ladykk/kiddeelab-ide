@@ -16,12 +16,12 @@ export default function IDE() {
           className="w-full h-full flex"
           style={{ maxHeight: "calc(100% - 56px)" }}
         >
-          <div className="max-w-[450px] w-full border-r flex flex-col">
+          <div className="min-w-[350px] max-w-[350px] w-full border-r flex flex-col">
             <Device />
             <CodeManage />
           </div>
           <Workspace />
-          <div className="max-w-[450px] w-full h-full bg-gray-100 flex flex-col border-l">
+          <div className="min-w-[400px] max-w-[400px] w-full h-full bg-gray-100 flex flex-col">
             <LiveCode />
             <SerialMonitor />
           </div>

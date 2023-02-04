@@ -1,7 +1,7 @@
 [
   {
     "type": "arduino_structure",
-    "message0": "when Arduino start %1 %2 loop forever %3 %4",
+    "message0": "when Device start %1 %2 loop forever %3 %4",
     "args0": [
       {
         "type": "input_dummy"
@@ -19,7 +19,39 @@
       }
     ],
     "colour": "#FFBF00",
-    "tooltip": "Initialize Arduino structure.",
+    "tooltip": "Initialize device structure.",
+    "helpUrl": ""
+  },
+  {
+    "type": "arduino_setup",
+    "message0": "when Device start %1 %2",
+    "args0": [
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_statement",
+        "name": "setup"
+      }
+    ],
+    "colour": "#FFBF00",
+    "tooltip": "Initialize device setup.",
+    "helpUrl": ""
+  },
+  {
+    "type": "arduino_loop",
+    "message0": "Device loop %1 %2",
+    "args0": [
+      {
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_statement",
+        "name": "loop"
+      }
+    ],
+    "colour": "#FFBF00",
+    "tooltip": "Initialize device loop.",
     "helpUrl": ""
   },
   {

@@ -99,6 +99,18 @@ export default function UploadButton({ disabled }: { disabled: boolean }) {
         })
       );
 
+      const close_port = await window.serial.close();
+
+      if (!close_port)
+        dispatch(
+          addToast({
+            id: "buildUploadResult",
+            type: "failure",
+            title: "Close Serial Port Failed",
+            message: "Unable to close the serial port before uploading.",
+          })
+        );
+
       const result = await window.build.upload(port, deviceId);
       if (result.status === "success") {
         dispatch(
