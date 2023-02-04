@@ -7,6 +7,8 @@
       "colour": "#FFBF00",
       "contents": [
         { "kind": "block", "type": "arduino_structure" },
+        { "kind": "block", "type": "arduino_setup" },
+        { "kind": "block", "type": "arduino_loop" },
         {
           "kind": "block",
           "type": "pin_esp_32"
@@ -63,17 +65,7 @@
       "contents": [
         {
           "kind": "block",
-          "type": "serial_begin",
-          "inputs": {
-            "output": {
-              "block": {
-                "type": "number_data",
-                "fields": {
-                  "output": 9600
-                }
-              }
-            }
-          }
+          "type": "serial_begin"
         },
         {
           "kind": "block",
@@ -254,6 +246,10 @@
         {
           "kind": "block",
           "type": "boolean_op"
+        },
+        {
+          "kind": "block",
+          "type": "boolean_compare"
         }
       ]
     },
