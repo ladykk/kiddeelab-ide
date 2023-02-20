@@ -113,7 +113,7 @@ const DHT: ComponentDetail = {
       },
     ];
   },
-  module_declare: (component, deviceId) => ["include <DHT.h>"],
+  module_declare: (component, deviceId) => ["#include <DHT.h>"],
   variable_declare: (compnent, deviceId) => [
     `DHT ${compnent.name}(${compnent.pins[0].pin}, DHT22)`,
   ],

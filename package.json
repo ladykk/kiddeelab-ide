@@ -1,6 +1,6 @@
 {
   "name": "KiddeeLab IDE",
-  "version": "0.0.5-alpha",
+  "version": "0.0.6-alpha",
   "description": "An Block Programing IDE for Microcontrollers and Robots.",
   "main": "main.js",
   "author": "Rattapon Apiratjit (Kiddee Lab)",
@@ -58,5 +58,15 @@
     "tailwindcss": "^3.2.4",
     "typescript": "^4.9.3",
     "vite": "^4.0.0"
+  },
+  "build": {
+    "fileAssociations": [
+      {
+        "ext": "kdle",
+        "name": "KiddeeLab Project",
+        "role": "Editor",
+        "perMachine": true
+      }
+    ]
   }
 }

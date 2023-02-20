@@ -79,12 +79,13 @@ export default function AddFunctionModal() {
         name: convertName(form.name),
         return: form.return,
         args: args.map((a) => ({
-          name: convertName(form.name),
+          name: convertName(a.name),
           size: a.isArray ? a.size : undefined,
           type: a.type,
         })),
       })
     );
+    setForm(initialFunctionForm);
     setShow(false);
   };
 

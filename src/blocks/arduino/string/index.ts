@@ -16,7 +16,7 @@ ArduinoGenerator["join_string"] = function (block: Block) {
 };
 
 ArduinoGenerator["char_at"] = function (block: Block) {
-  const index: number = Number(block.getFieldValue("index"));
+  const index = block.getFieldValue("index");
   const base: string = ArduinoGenerator.valueToCode(
     block,
     "base",

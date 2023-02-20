@@ -59,15 +59,13 @@ ArduinoGenerator["pin_analog_read"] = function (block: Block) {
 };
 
 ArduinoGenerator["pin_analog_write"] = function (block: Block) {
-  const output: number = Number(
-    ArduinoGenerator.valueToCode(block, "output", ORDER.ATOMIC)
-  );
+  const output = ArduinoGenerator.valueToCode(block, "output", ORDER.ATOMIC);
   const pin: string = ArduinoGenerator.valueToCode(block, "pin", ORDER.ATOMIC);
   return `analogWrite(${pin}, ${output});\n`;
 };
 
 ArduinoGenerator["pin_pwm_output"] = function (block: Block) {
-  const output: number = block.getFieldValue("output");
+  const output = block.getFieldValue("output");
   return [`${output}`, ORDER.ATOMIC];
 };
 
