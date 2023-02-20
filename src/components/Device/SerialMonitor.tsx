@@ -99,7 +99,7 @@ export default function SerialMonitor() {
           <option value="57600">57600</option>
           <option value="115200">115200</option>
           <option value="128000">128000</option>
-          <option value="256000">25600</option>
+          <option value="256000">256000</option>
         </Select>
       </div>
 

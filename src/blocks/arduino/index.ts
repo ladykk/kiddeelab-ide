@@ -67,7 +67,7 @@ export const codeFormator = (
               : a.type === "String"
               ? "String"
               : "double"
-          }${a.size ? `[${a.size}]` : ""} ${a.name}`
+          } ${a.name}${a.size ? `[${a.size}]` : ""}`
       )
       .join(", ")}) {${s.substring(s.split("\n")[0].length)}${
       index + 1 === split_functions.length ? "\n" : ""

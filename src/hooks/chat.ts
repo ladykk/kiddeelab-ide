@@ -7,7 +7,7 @@ export function useChatScroll<T>(
   useEffect(() => {
     if (ref.current) {
       if (
-        ref.current.scrollTop + ref.current.clientHeight + 50 >=
+        ref.current.scrollTop + ref.current.clientHeight + 200 >=
         ref.current.scrollHeight
       )
         ref.current.scrollTop = ref.current.scrollHeight;

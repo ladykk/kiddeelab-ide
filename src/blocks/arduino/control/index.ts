@@ -4,17 +4,13 @@ import ArduinoGenerator, { ORDER } from "../generator";
 defineBlocksWithJsonArray(blocks);
 
 ArduinoGenerator["control_wait"] = function (block: Block) {
-  const period: number = Number(
-    ArduinoGenerator.valueToCode(block, "period", ORDER.ATOMIC)
-  );
+  const period = ArduinoGenerator.valueToCode(block, "period", ORDER.ATOMIC);
   const unit: string = block.getFieldValue("unit");
-  return `delay(${period * (unit === "seconds" ? 1000 : 1)});\n`;
+  return `delay(${period} * ${unit === "seconds" ? 1000 : 1});\n`;
 };
 
 ArduinoGenerator["control_repeat"] = function (block: Block) {
-  const round: number = Number(
-    ArduinoGenerator.valueToCode(block, "round", ORDER.ATOMIC)
-  );
+  const round = ArduinoGenerator.valueToCode(block, "round", ORDER.ATOMIC);
   const callback: string = ArduinoGenerator.statementToCode(block, "callback");
   return `for(int reserved_counter = 0; reserved_counter < ${round}; reserved_counter++) {\n${callback}}\n`;
 };
@@ -80,13 +76,9 @@ ArduinoGenerator["control_for"] = function (block: Block) {
     "variable",
     ORDER.ATOMIC
   );
-  const initial: number = Number(
-    ArduinoGenerator.valueToCode(block, "initial", ORDER.ATOMIC)
-  );
+  const initial = ArduinoGenerator.valueToCode(block, "initial", ORDER.ATOMIC);
   const operator: string = block.getFieldValue("operator");
-  const step: number = Number(
-    ArduinoGenerator.valueToCode(block, "step", ORDER.ATOMIC)
-  );
+  const step = ArduinoGenerator.valueToCode(block, "step", ORDER.ATOMIC);
   const condition: string = ArduinoGenerator.valueToCode(
     block,
     "condition",
