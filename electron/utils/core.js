@@ -29,6 +29,16 @@ module.exports.coreUpdateIndex = async (event) => {
     );
     if (updateIndex.stderr) return false;
 
+<<<<<<< HEAD
+=======
+    if (LIBS_STRING.length > 0) {
+      const { stdout, stderr } = await exec(
+        `${CORE} lib install ${LIBS_STRING}`
+      );
+      console.log(stdout);
+      if (stderr) return false;
+    }
+>>>>>>> 78264e6 (bugfixs)
     return true;
   } catch (e) {
     return false;

@@ -2,31 +2,18 @@ const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 const writeFile = util.promisify(require("fs").writeFile);
 const os = require("os");
+<<<<<<< HEAD
 const CORE = require("../binaries").execPath("arduino-cli");
 const libariesPath = require("../binaries").libariesPath;
+=======
+const CORE = require("../../core");
+const { app } = require("electron");
+>>>>>>> 78264e6 (bugfixs)
 
 module.exports.buildVerify = async (event, fqbn, code) => {
   try {
-    // Create Sketch
-    const newSketch = await exec(`${CORE} sketch new KiddeeIDE`);
-    if (newSketch.stderr)
-      return {
-        status: "error",
-        reason: "Cannot create a sketch.",
-        error: newSketch.stderr,
-      };
-
     // Setup Path
-    let file_path = "";
-    let path_tree;
-    const path = newSketch.stdout.slice(19).replace(/[\r\n]/gm, "");
-    if (os.type() === "Windows_NT") {
-      path_tree = path.split(`\\`);
-      file_path = path + "\\" + path_tree[path_tree.length - 1] + ".ino";
-    } else {
-      path_tree = path.split("/");
-      file_path = path + "/" + path_tree[path_tree.length - 1] + ".ino";
-    }
+    let file_path = app.getAppPath() + "\\KiddeeIDE\\KiddeeIDE.ino";
 
     // Add Code
     await writeFile(file_path, code);

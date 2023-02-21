@@ -17,7 +17,11 @@ const {
 } = require("./electron/utils/serial");
 const serve = require("electron-serve");
 
+<<<<<<< HEAD
 const loadUrl = serve({ directory: "out" });
+=======
+const loadUrl = serve({ directory: "dist" });
+>>>>>>> 78264e6 (bugfixs)
 
 const createWindow = async () => {
   const mainWindow = new BrowserWindow({
