@@ -43,6 +43,7 @@ module.exports.coreUpdateIndex = async (event) => {
       const { stdout, stderr } = await exec(
         `${CORE} lib install ${LIBS_STRING}`
       );
+      console.log(stdout);
       if (stderr) return false;
     }
     return true;
@@ -65,7 +66,9 @@ module.exports.coreInstallList = async (event) => {
 
 module.exports.coreInstallCore = async (event, platform) => {
   try {
-    const { stdout, stderr } = await exec(`${CORE} core install ${platform}`);
+    const { stdout, stderr } = await exec(
+      `${CORE} core install ${platform} --additional-urls ${ADDITIONAL_URLS_STRING}`
+    );
     if (stderr) return false;
     else return true;
   } catch (e) {

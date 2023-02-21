@@ -9,6 +9,14 @@ module.exports = {
   },
   rebuildConfig: {},
   makers: [
+    // {
+    //   name: "@electron-forge/maker-wix",
+    //   config: {
+    //     appUserModelId: "th.co.kiddeelab.ide",
+    //     language: 1033,
+    //     manufacturer: "Kiddee Lab",
+    //   },
+    // },
     {
       name: "@electron-forge/maker-squirrel",
       config: {

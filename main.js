@@ -17,8 +17,6 @@ const {
 } = require("./electron/utils/serial");
 const serve = require("electron-serve");
 
-require("update-electron-app")();
-
 const loadUrl = serve({ directory: "dist" });
 
 const createWindow = async () => {
