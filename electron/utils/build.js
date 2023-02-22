@@ -8,7 +8,10 @@ const libariesPath = require("../binaries").libariesPath;
 =======
 const CORE = require("../../core");
 const { app } = require("electron");
+<<<<<<< HEAD
 >>>>>>> 78264e6 (bugfixs)
+=======
+>>>>>>> 78264e618b5f40543412d028a4a40946405e1a58
 
 module.exports.buildVerify = async (event, fqbn, code) => {
   try {

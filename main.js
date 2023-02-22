@@ -18,8 +18,11 @@ const {
 const serve = require("electron-serve");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const loadUrl = serve({ directory: "out" });
 =======
+=======
+>>>>>>> 78264e618b5f40543412d028a4a40946405e1a58
 const loadUrl = serve({ directory: "dist" });
 >>>>>>> 78264e6 (bugfixs)
 
