@@ -76,6 +76,7 @@ const RCServo: ComponentDetail = {
     return [`Servo ${component.name}`];
   },
   module_declare: (component, deviceId) => {
+    if (deviceId === "esp32:esp32:esp32") return ["#include <ESP32_Servo.h>"];
     return ["#include <Servo.h>"];
   },
 };

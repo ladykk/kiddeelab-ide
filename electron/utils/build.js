@@ -2,7 +2,8 @@ const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 const writeFile = util.promisify(require("fs").writeFile);
 const os = require("os");
-const CORE = require("../../core");
+const CORE = require("../binaries").execPath("arduino-cli");
+const libariesPath = require("../binaries").libariesPath;
 
 module.exports.buildVerify = async (event, fqbn, code) => {
   try {
@@ -31,7 +32,9 @@ module.exports.buildVerify = async (event, fqbn, code) => {
     await writeFile(file_path, code);
 
     // Compile
-    const compile = await exec(`${CORE} compile --fqbn ${fqbn} KiddeeIDE`);
+    const compile = await exec(
+      `${CORE} compile --fqbn ${fqbn} KiddeeIDE --libraries "${libariesPath}"`
+    );
     if (compile.stderr)
       return {
         status: "error",

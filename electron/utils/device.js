@@ -1,6 +1,6 @@
-const CORE = require("../../core");
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
+const CORE = require("../binaries").execPath("arduino-cli");
 
 module.exports.deviceFetch = async (event) => {
   try {

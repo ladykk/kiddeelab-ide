@@ -17,9 +17,7 @@ const {
 } = require("./electron/utils/serial");
 const serve = require("electron-serve");
 
-require("update-electron-app")();
-
-const loadUrl = serve({ directory: "dist" });
+const loadUrl = serve({ directory: "out" });
 
 const createWindow = async () => {
   const mainWindow = new BrowserWindow({
@@ -53,7 +51,7 @@ const createWindow = async () => {
 
   if (app.isPackaged) await loadUrl(mainWindow);
   else {
-    mainWindow.loadURL("http://localhost:5173/");
+    mainWindow.loadURL("http://127.0.0.1:5173/");
   }
 
   mainWindow.on("close", (e) => {
@@ -80,8 +78,6 @@ const createWindow = async () => {
 app.on("window-all-closed", () => {
   app.quit();
 });
-
-if (require("electron-squirrel-startup")) app.quit();
 
 app.whenReady().then(async () => {
   await createWindow();

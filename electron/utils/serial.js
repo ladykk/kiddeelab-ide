@@ -1,4 +1,3 @@
-const CORE = require("../../core");
 const { SerialPort, ReadyParser, DelimiterParser } = require("serialport");
 
 let serial = null;
